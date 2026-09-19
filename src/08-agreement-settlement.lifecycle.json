@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Agreement Settlement",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      700
+    ],
+    "views": [
+      {
+        "id": "main-path",
+        "label": "Pay path",
+        "focus": [
+          "established",
+          "active",
+          "expired",
+          "settlement",
+          "settled"
+        ],
+        "note": "The ordered path from escrow to released payment."
+      },
+      {
+        "id": "owner-choice",
+        "label": "Owner choice",
+        "focus": [
+          "settlement",
+          "settled",
+          "burned"
+        ],
+        "note": "At settlement the owner pays or burns; burning costs extra."
+      },
+      {
+        "id": "timeouts",
+        "label": "Timeouts and blocks",
+        "focus": [
+          "expired",
+          "blocked",
+          "settlement",
+          "claimed"
+        ],
+        "note": "An open challenge blocks settlement; an idle owner loses the burn right."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Agreement"
+    },
+    {
+      "id": "gates",
+      "label": "Blocks and burns"
+    },
+    {
+      "id": "terminal",
+      "label": "Provider claim"
+    }
+  ],
+  "states": [
+    {
+      "id": "established",
+      "type": "start",
+      "label": "Established",
+      "sublabel": "escrow held on owner",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "active",
+      "type": "active",
+      "label": "Active",
+      "sublabel": "storing, challengeable",
+      "lane": "main",
+      "col": 1,
+      "step": "02",
+      "tag": "binding"
+    },
+    {
+      "id": "expired",
+      "type": "waiting",
+      "label": "Expired",
+      "sublabel": "expires_at reached",
+      "lane": "main",
+      "col": 2,
+      "step": "03"
+    },
+    {
+      "id": "settlement",
+      "type": "decision",
+      "label": "Settlement",
+      "sublabel": "owner chooses",
+      "lane": "main",
+      "col": 3,
+      "step": "04",
+      "tag": "window"
+    },
+    {
+      "id": "settled",
+      "type": "success",
+      "label": "Paid",
+      "sublabel": "payment released",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "blocked",
+      "type": "waiting",
+      "label": "Settlement Blocked",
+      "sublabel": "challenge unresolved",
+      "lane": "gates",
+      "col": 0,
+      "tag": "both calls fail"
+    },
+    {
+      "id": "burned",
+      "type": "failure",
+      "label": "Burned",
+      "sublabel": "burn premium charged",
+      "lane": "gates",
+      "col": 2
+    },
+    {
+      "id": "claimed",
+      "type": "neutral",
+      "label": "Claimed By Provider",
+      "sublabel": "burn right forfeited",
+      "lane": "terminal",
+      "col": 1
+    }
+  ],
+  "transitions": [
+    {
+      "id": "start",
+      "from": "established",
+      "to": "active",
+      "label": "terms redeemed",
+      "labelDy": -25
+    },
+    {
+      "id": "run",
+      "from": "active",
+      "to": "expired",
+      "label": "duration elapses",
+      "labelDy": -25
+    },
+    {
+      "id": "settle-open",
+      "from": "expired",
+      "to": "settlement",
+      "label": "owner acts in window",
+      "labelDy": -25
+    },
+    {
+      "id": "pay",
+      "from": "settlement",
+      "to": "settled",
+      "label": "end_agreement(Pay)",
+      "variant": "emphasis",
+      "labelDy": -25
+    },
+    {
+      "id": "burn",
+      "from": "settlement",
+      "to": "burned",
+      "label": "end_agreement(Burn)",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "labelAt": [
+        620,
+        350
+      ]
+    },
+    {
+      "id": "timeout",
+      "from": "settlement",
+      "to": "claimed",
+      "label": "window missed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        556,
+        400
+      ]
+    },
+    {
+      "id": "hold",
+      "from": "expired",
+      "to": "blocked",
+      "label": "pending challenge",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "clear",
+      "from": "blocked",
+      "to": "settlement",
+      "label": "challenge resolved",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "labelAt": [
+        500,
+        265
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Binding until expiry",
+      "items": [
+        "Neither side can exit early; price is locked at creation or extension",
+        "top_up_agreement raises the quota, extend_agreement raises the duration",
+        "Anyone may top up escrow, but it always sits on the agreement owner"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Pay or burn",
+      "items": [
+        "Burning costs the locked payment plus a governance-set premium from the owner",
+        "If the owner cannot fund the premium, the burn fails and they must pay",
+        "A burn is recorded on chain and damages the provider's reputation"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Blocks and timeouts",
+      "items": [
+        "Both end_agreement and claim_expired_agreement fail while a challenge is open",
+        "After SettlementTimeout the provider can claim and the burn right is gone",
+        "A slashed provider is removed instead, and the remaining payment returns to the owner"
+      ]
+    }
+  ]
+}

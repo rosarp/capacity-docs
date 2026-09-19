@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Scalable Web3 Storage: System Architecture",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1240,
+      900
+    ],
+    "views": [
+      {
+        "id": "write-path",
+        "label": "Write path",
+        "focus": [
+          "client",
+          "primaries",
+          "pallet",
+          "bucket"
+        ],
+        "note": "Client uploads to primaries off-chain, then checkpoints the signed state on-chain."
+      },
+      {
+        "id": "redundancy",
+        "label": "Read redundancy",
+        "focus": [
+          "client",
+          "primaries",
+          "replica",
+          "pallet"
+        ],
+        "note": "Replicas sync from any data holder and confirm on-chain to get paid."
+      },
+      {
+        "id": "enforcement",
+        "label": "Enforcement",
+        "focus": [
+          "challenger",
+          "pallet",
+          "stake",
+          "primaries"
+        ],
+        "note": "Challenges are the on-chain path that makes off-chain service incentive-compatible."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "client",
+      "type": "frontend",
+      "label": "Client / SDK",
+      "sublabel": "uploads, reads, verifies hashes",
+      "tag": "bucket member",
+      "pos": [
+        140,
+        150
+      ],
+      "size": [
+        190,
+        92
+      ]
+    },
+    {
+      "id": "primaries",
+      "type": "backend",
+      "label": "Primary Providers",
+      "sublabel": "receive writes, serve reads",
+      "tag": "admin-controlled, max 5",
+      "pos": [
+        140,
+        330
+      ],
+      "size": [
+        190,
+        92
+      ]
+    },
+    {
+      "id": "replica",
+      "type": "backend",
+      "label": "Replica Providers",
+      "sublabel": "sync autonomously, serve everyone",
+      "tag": "permissionless",
+      "pos": [
+        140,
+        510
+      ],
+      "size": [
+        190,
+        92
+      ]
+    },
+    {
+      "id": "challenger",
+      "type": "external",
+      "label": "Challenger",
+      "sublabel": "member, agreement owner, or public",
+      "pos": [
+        140,
+        690
+      ],
+      "size": [
+        190,
+        86
+      ]
+    },
+    {
+      "id": "anchor",
+      "type": "external",
+      "label": "Relay Chain",
+      "sublabel": "anchor block clock",
+      "pos": [
+        530,
+        50
+      ],
+      "size": [
+        210,
+        80
+      ]
+    },
+    {
+      "id": "pallet",
+      "type": "backend",
+      "label": "Storage Pallet",
+      "sublabel": "extrinsics, signature and proof checks",
+      "tag": "parachain runtime",
+      "pos": [
+        520,
+        330
+      ],
+      "size": [
+        230,
+        110
+      ]
+    },
+    {
+      "id": "bucket",
+      "type": "database",
+      "label": "Bucket State",
+      "sublabel": "members, snapshot, agreements",
+      "pos": [
+        880,
+        210
+      ],
+      "size": [
+        210,
+        90
+      ]
+    },
+    {
+      "id": "stake",
+      "type": "security",
+      "label": "Stake and Holds",
+      "sublabel": "provider stake, payment, deposits",
+      "pos": [
+        880,
+        470
+      ],
+      "size": [
+        210,
+        90
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "On-chain",
+      "wraps": [
+        "pallet",
+        "bucket",
+        "stake"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "client-write",
+      "from": "client",
+      "to": "primaries",
+      "label": "upload, commit, signed commitment",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "replica-sync",
+      "from": "replica",
+      "to": "primaries",
+      "label": "sync peaks and missing nodes",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "client-read",
+      "from": "client",
+      "to": "replica",
+      "label": "read and verify",
+      "variant": "dashed",
+      "fromSide": "left",
+      "toSide": "left",
+      "labelDy": -40
+    },
+    {
+      "id": "client-checkpoint",
+      "from": "client",
+      "to": "pallet",
+      "label": "checkpoint(signatures)",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "labelSegment": 0
+    },
+    {
+      "id": "provider-response",
+      "from": "primaries",
+      "to": "pallet",
+      "label": "respond_to_challenge",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "replica-confirm",
+      "from": "replica",
+      "to": "pallet",
+      "label": "confirm_replica_sync",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "open-challenge",
+      "from": "challenger",
+      "to": "pallet",
+      "label": "challenge + deposit",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "anchor-clock",
+      "from": "anchor",
+      "to": "pallet",
+      "label": "anchor block number",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "pallet-bucket",
+      "from": "pallet",
+      "to": "bucket",
+      "label": "snapshot and agreements",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "pallet-stake",
+      "from": "pallet",
+      "to": "stake",
+      "label": "hold, slash, settle",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Off-chain by default",
+      "items": [
+        "Writes, reads and sync never touch the chain",
+        "A provider signature over the new MMR state is the immediate guarantee",
+        "Provider nodes expose JSON over HTTP on port 3333"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "On-chain only when needed",
+      "items": [
+        "Bucket creation and agreement setup",
+        "Checkpoints and replica sync confirmations",
+        "Challenge resolution and settlement"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Enforcement",
+      "items": [
+        "A failed challenge slashes the provider's entire stake",
+        "Every duration is measured in anchor (relay) blocks",
+        "Private buckets restrict primary challenges to members and primary-agreement owners"
+      ]
+    }
+  ]
+}

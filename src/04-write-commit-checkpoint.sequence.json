@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Write Path: Upload, Commit, Checkpoint",
+    "quality_profile": "showcase",
+    "viewBox": [1020, 800],
+    "column_fit": "spread",
+    "views": [
+      { "id": "upload", "label": "Upload", "focus": ["writer", "primary_a"], "note": "Content-addressed upload is bottom-up and carries no MMR meaning." },
+      { "id": "commit", "label": "Commit", "focus": ["writer", "primary_a", "primary_b"], "note": "The provider signature over the new MMR state is the immediate guarantee." },
+      { "id": "checkpoint", "label": "Checkpoint", "focus": ["writer", "pallet", "bucket"], "note": "Collected signatures become the canonical on-chain snapshot." }
+    ]
+  },
+  "participants": [
+    { "id": "writer", "type": "external", "label": "Writer", "sublabel": "admin or writer" },
+    { "id": "primary_a", "type": "backend", "label": "Primary A", "sublabel": "provider node" },
+    { "id": "primary_b", "type": "backend", "label": "Primary B", "sublabel": "provider node" },
+    { "id": "pallet", "type": "backend", "label": "Storage Pallet", "sublabel": "extrinsic" },
+    { "id": "bucket", "type": "database", "label": "Bucket State", "sublabel": "snapshot" }
+  ],
+  "segments": [
+    { "from": 150, "to": 300, "label": "Upload: content-addressed, quota-checked" },
+    { "from": 320, "to": 500, "label": "Commit: provider signs the new MMR state" },
+    { "from": 520, "to": 700, "label": "Checkpoint: canonical state and liability" }
+  ],
+  "messages": [
+    { "id": "exists", "from": "writer", "to": "primary_a", "y": 185, "label": "POST /exists (batched hashes)", "variant": "default" },
+    { "id": "missing", "from": "primary_a", "to": "writer", "y": 225, "label": "missing hashes", "variant": "return" },
+    { "id": "upload", "from": "writer", "to": "primary_a", "y": 268, "label": "PUT /node, children first", "variant": "emphasis", "note": "507 if quota_exceeded" },
+    { "id": "commit", "from": "writer", "to": "primary_a", "y": 350, "label": "POST /commit(data_roots)", "variant": "default" },
+    { "id": "signature", "from": "primary_a", "to": "writer", "y": 390, "label": "mmr_root, leaf_count, provider_signature", "variant": "return" },
+    { "id": "mirror", "from": "writer", "to": "primary_b", "y": 432, "label": "same upload and commit", "variant": "default", "note": "primaries never sync with each other" },
+    { "id": "signature_b", "from": "primary_b", "to": "writer", "y": 472, "label": "second signature", "variant": "return" },
+    { "id": "checkpoint", "from": "writer", "to": "pallet", "y": 552, "label": "checkpoint(commitment, signatures)", "variant": "emphasis" },
+    { "id": "snapshot", "from": "pallet", "to": "bucket", "y": 592, "label": "snapshot + primary_signers bitfield", "variant": "default", "note": "needs min_providers signatures" },
+    { "id": "checkpointed", "from": "pallet", "to": "writer", "y": 632, "label": "Checkpointed", "variant": "return" },
+    { "id": "extend", "from": "primary_b", "to": "pallet", "y": 672, "label": "extend_checkpoint(more signatures)", "variant": "dashed", "note": "permissionless: adds liability only" }
+  ],
+  "activations": [
+    { "participant": "primary_a", "from": 180, "to": 396, "type": "backend" },
+    { "participant": "primary_b", "from": 427, "to": 478, "type": "backend" },
+    { "participant": "pallet", "from": 547, "to": 678, "type": "backend" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Upload and commit are separate", "items": ["Upload stores content-addressed nodes and has no MMR meaning", "Commit adds data_roots to the bucket MMR and makes the provider liable", "Providers accept every upload that fits the quota, so concurrent writers never conflict"] },
+    { "dot": "emerald", "title": "Signature before chain", "items": ["The signed commitment is actionable without any chain write", "A checkpoint adds synchronization, public verifiability and durability", "Only providers in the snapshot bitfield can be challenged against it"] },
+    { "dot": "amber", "title": "Multi-provider writes", "items": ["The client uploads to each primary separately", "min_providers signatures are required to checkpoint", "Non-canonical branches can be pruned once canonical grows past them"] }
+  ]
+}

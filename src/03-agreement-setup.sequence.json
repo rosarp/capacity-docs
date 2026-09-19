@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Storage Agreement Setup",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1060,
+      780
+    ],
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "primary",
+        "label": "Primary agreement",
+        "focus": [
+          "owner",
+          "primary",
+          "pallet",
+          "bucket"
+        ],
+        "note": "The provider quotes and signs off-chain; the owner redeems the quote on-chain."
+      },
+      {
+        "id": "replica",
+        "label": "Replica agreement",
+        "focus": [
+          "owner",
+          "replica",
+          "pallet",
+          "holds"
+        ],
+        "note": "Anyone can fund a replica on an existing bucket."
+      },
+      {
+        "id": "escrow",
+        "label": "Escrow",
+        "focus": [
+          "pallet",
+          "holds"
+        ],
+        "note": "Payment and sync balance are held on the agreement owner until settlement."
+      }
+    ]
+  },
+  "participants": [
+    {
+      "id": "owner",
+      "type": "external",
+      "label": "Owner",
+      "sublabel": "client / funder"
+    },
+    {
+      "id": "primary",
+      "type": "backend",
+      "label": "Primary Provider",
+      "sublabel": "node HTTP"
+    },
+    {
+      "id": "replica",
+      "type": "backend",
+      "label": "Replica Provider",
+      "sublabel": "node HTTP"
+    },
+    {
+      "id": "pallet",
+      "type": "backend",
+      "label": "Storage Pallet",
+      "sublabel": "extrinsic"
+    },
+    {
+      "id": "bucket",
+      "type": "database",
+      "label": "Bucket State",
+      "sublabel": "on-chain"
+    },
+    {
+      "id": "holds",
+      "type": "security",
+      "label": "Holds",
+      "sublabel": "escrow"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 405,
+      "label": "Primary agreement: bucket created on redemption"
+    },
+    {
+      "from": 425,
+      "to": 680,
+      "label": "Replica agreement: permissionless, on an existing bucket"
+    }
+  ],
+  "messages": [
+    {
+      "id": "quote-request",
+      "from": "owner",
+      "to": "primary",
+      "y": 185,
+      "label": "ask for terms: bytes, duration",
+      "variant": "default"
+    },
+    {
+      "id": "signed-terms",
+      "from": "primary",
+      "to": "owner",
+      "y": 225,
+      "label": "AgreementTerms + signature, valid_until",
+      "variant": "return"
+    },
+    {
+      "id": "redeem-primary",
+      "from": "owner",
+      "to": "pallet",
+      "y": 270,
+      "label": "establish_storage_agreement(terms, sig, visibility)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "create-bucket",
+      "from": "pallet",
+      "to": "bucket",
+      "y": 312,
+      "label": "create bucket, owner as admin, provider as primary",
+      "variant": "default"
+    },
+    {
+      "id": "hold-payment",
+      "from": "pallet",
+      "to": "holds",
+      "y": 352,
+      "label": "hold AgreementPayment on owner",
+      "variant": "security"
+    },
+    {
+      "id": "primary-ack",
+      "from": "pallet",
+      "to": "owner",
+      "y": 392,
+      "label": "AgreementEstablished",
+      "variant": "return"
+    },
+    {
+      "id": "replica-quote",
+      "from": "owner",
+      "to": "replica",
+      "y": 455,
+      "label": "ask for replica terms: sync price, interval",
+      "variant": "default"
+    },
+    {
+      "id": "replica-signed",
+      "from": "replica",
+      "to": "owner",
+      "y": 495,
+      "label": "AgreementTerms bound to bucket_id",
+      "variant": "return"
+    },
+    {
+      "id": "redeem-replica",
+      "from": "owner",
+      "to": "pallet",
+      "y": 540,
+      "label": "establish_replica_agreement(bucket_id, terms, sig)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "hold-sync",
+      "from": "pallet",
+      "to": "holds",
+      "y": 582,
+      "label": "hold payment + sync_balance",
+      "variant": "security"
+    },
+    {
+      "id": "record-replica",
+      "from": "pallet",
+      "to": "bucket",
+      "y": 622,
+      "label": "agreement stored, role = Replica",
+      "variant": "default"
+    },
+    {
+      "id": "replica-ack",
+      "from": "pallet",
+      "to": "replica",
+      "y": 662,
+      "label": "AgreementEstablished",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "primary",
+      "from": 180,
+      "to": 230,
+      "type": "backend"
+    },
+    {
+      "participant": "pallet",
+      "from": 265,
+      "to": 397,
+      "type": "backend"
+    },
+    {
+      "participant": "replica",
+      "from": 450,
+      "to": 500,
+      "type": "backend"
+    },
+    {
+      "participant": "pallet",
+      "from": 535,
+      "to": 667,
+      "type": "backend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One call, no round trip",
+      "items": [
+        "The provider authors and signs the terms off-chain",
+        "The owner submits the signed quote on-chain in a single extrinsic",
+        "There is no on-chain request and accept handshake"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "What the quote fixes",
+      "items": [
+        "Price per byte, quota, duration and a valid_until expiry",
+        "A primary quote carries bucket_id = None; the bucket is created at redemption",
+        "A replica quote carries bucket_id = Some and replica_params"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Binding both ways",
+      "items": [
+        "No early exit for the provider and no early cancellation for the owner",
+        "Escrow sits on the agreement owner; anyone may top it up",
+        "Extensions can be refused later with set_extensions_blocked"
+      ]
+    }
+  ]
+}
