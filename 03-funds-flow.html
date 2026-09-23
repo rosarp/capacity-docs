@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="archify 2.17.0-dev.1">
-  <title>Storage Agreement Setup Diagram</title>
+  <title>Funds Flow Diagram</title>
   <script>
     // Resolve the theme before first paint so light-preference users don't
     // see a dark flash. The toolbar script below re-applies with UI state.
@@ -4955,13 +4955,13 @@
            data-preset-badge-blueprint="BLUEPRINT / REV 01"
            data-preset-badge-editorial="EDITORIAL / FIELD NOTE">
         <div class="pulse-dot"></div>
-        <h1>Storage Agreement Setup</h1>
+        <h1>Funds Flow</h1>
       </div>
     </div>
 
-    <script id="archify-guided-views-data" type="application/json">[{"id":"primary","label":"Primary agreement","focus":["owner","primary","pallet","bucket"],"note":"The provider quotes and signs off-chain; the owner redeems the quote on-chain."},{"id":"replica","label":"Replica agreement","focus":["owner","replica","pallet","holds"],"note":"Anyone can fund a replica on an existing bucket."},{"id":"escrow","label":"Escrow","focus":["pallet","holds"],"note":"Payment and sync balance are held on the agreement owner until settlement."}]</script>
+    <script id="archify-guided-views-data" type="application/json">[{"id":"stake","label":"Provider stake","focus":["provider_acct","stake","treasury","challenger_out"],"note":"A failed challenge slashes the full stake to the Treasury; the challenger is made whole from the slash."},{"id":"agreement","label":"Agreement payment","focus":["owner_acct","payment","sync_hold","provider_out","replica_out","treasury","owner_out"],"note":"The prepaid fee and a replica's sync_balance are held on the agreement owner until settlement."},{"id":"challenge","label":"Challenge deposit","focus":["challenger_acct","deposit","provider_out","challenger_out"],"note":"The deposit reimburses the provider's response fee; the excess returns to the challenger."}]</script>
 
-    <script id="archify-i18n-data" type="application/json">{"locale":"en","messages":{"viewer.kind.frontend":"Frontend","viewer.kind.backend":"Backend","viewer.kind.database":"Database","viewer.kind.cloud":"Cloud","viewer.kind.security":"Security","viewer.kind.messagebus":"Message bus","viewer.kind.external":"External","viewer.kind.neutral":"Neutral","viewer.kind.node":"Node","viewer.kind.start":"Start","viewer.kind.active":"Active","viewer.kind.waiting":"Waiting","viewer.kind.decision":"Decision","viewer.kind.success":"Success","viewer.kind.failure":"Failure","viewer.toolbar.actions":"Diagram actions","viewer.theme.toggle.title":"Toggle theme (T)","viewer.theme.toggle":"Toggle color theme","viewer.theme.dark":"Dark","viewer.theme.light":"Light","viewer.preset.choose.title":"Choose visual style (S cycles)","viewer.preset.choose":"Choose visual style","viewer.preset.style":"Style","viewer.preset.menu":"Visual style","viewer.preset.identity":"Visual identity","viewer.preset.cycles":"S cycles","viewer.preset.classic":"Classic","viewer.preset.classic.short":"Classic","viewer.preset.classic.hint":"Stable technical default","viewer.preset.flow":"Signal Flow","viewer.preset.flow.short":"Flow","viewer.preset.flow.hint":"Motion-forward presentation","viewer.preset.blueprint":"Blueprint","viewer.preset.blueprint.hint":"Engineering review","viewer.preset.editorial":"Editorial","viewer.preset.editorial.hint":"Publication and launch notes","viewer.preset.badge.signalFlow":"SIGNAL FLOW","viewer.preset.badge.blueprint":"BLUEPRINT / REV 01","viewer.preset.badge.editorial":"EDITORIAL / FIELD NOTE","viewer.preset.badge.editorialPlate":"ARCHIFY / PLATE 04","viewer.preset.current":"Visual style: {style}. Choose visual style","viewer.motion.live":"Live","viewer.motion.still":"Still","viewer.motion.pause":"Pause motion","viewer.motion.resume":"Resume motion","viewer.motion.reduced":"Motion paused by reduced-motion preference","viewer.motion.hidden":"Motion paused while this page is hidden","viewer.motion.yielding":"Pause motion; currently yielding to {owner}","viewer.motion.yielding.title":"Live preview enabled · yielding to {owner}","viewer.owner.story":"the guided story","viewer.owner.chapter":"the active chapter","viewer.owner.chapterPreview":"the chapter delta preview","viewer.owner.handoff":"the chapter handoff","viewer.owner.route":"Route Probe","viewer.owner.lens":"Semantic Lens","viewer.owner.relationship":"Relationship Preview","viewer.owner.intent":"Intent Trace","viewer.owner.focus":"semantic focus","viewer.owner.legend":"legend preview","viewer.owner.reader":"reader interaction","viewer.present.enter":"Enter presentation stage","viewer.present.enter.title":"Presentation stage (F)","viewer.present.exit":"Exit presentation stage","viewer.present.exit.title":"Exit presentation stage (F or Escape)","viewer.present.present":"Present","viewer.present.exit.label":"Exit","viewer.export.button":"Export","viewer.export.button.title":"Export diagram (E)","viewer.export.diagram":"Export diagram","viewer.export.menu":"Export","viewer.export.subtitle":"Portable, clean outputs","viewer.export.share":"Share","viewer.export.shareCard":"Share Card","viewer.export.routeShareCard":"Route Share Card","viewer.export.reachShareCard":"Reach Share Card","viewer.export.copyShareCard":"Copy Share Card","viewer.export.copyDiagram":"Copy diagram","viewer.export.clipboardPng":"PNG to clipboard","viewer.export.raster":"Raster images","viewer.export.image":"Image","viewer.export.lossless":"Lossless image","viewer.export.compact":"Compact image","viewer.export.modern":"Modern image","viewer.export.vectorMotion":"Vector and motion","viewer.export.vectorMotion.heading":"Vector \u0026 motion","viewer.export.editable":"Editable vector","viewer.export.motion6s":"6s motion","viewer.export.unsupported":"Not supported by this browser","viewer.export.clipboardUnsupported":"Clipboard image write not supported by this browser","viewer.export.clipboardUnsupported.period":"Clipboard image write not supported by this browser.","viewer.export.clipboardUnsupported.short":"Clipboard image write not supported in this browser.","viewer.export.motionUnavailable":"Motion capture unavailable in this browser","viewer.export.webmUnavailable":"WebM unavailable in this browser","viewer.export.failed":"Export failed: {message}","viewer.export.unknownVariant":"Unknown Share Card variant: {variant}","viewer.export.routeRequired":"Trace a route before exporting a Route Share Card","viewer.export.reachRequired":"Trace authored reach before exporting a Reach Share Card","viewer.export.unknown":"unknown","viewer.export.routeFailed":"Route Share Card export failed: {message}","viewer.export.reachFailed":"Reach Share Card export failed: {message}","viewer.export.copyFailed":"Copy failed: {message}","viewer.export.copiedPng":"Copied PNG to clipboard","viewer.export.copiedShare":"Copied Share Card","viewer.export.downloadedShare":"Downloaded Share Card","viewer.export.downloadedRoute":"Downloaded Route Share Card","viewer.export.downloadedReach":"Downloaded Reach Share Card","viewer.export.downloadedWebm":"Downloaded WebM","viewer.export.recording":"Recording 6 seconds of motion…","viewer.export.card.routeSummary.one":"Route: {source} → {target} · {count} directed hop","viewer.export.card.routeSummary.other":"Route: {source} → {target} · {count} directed hops","viewer.export.card.reachSummary":"Authored {direction} from {origin} · {nodes} · {links} · max {hops}","viewer.export.card.node.one":"{count} node","viewer.export.card.node.other":"{count} nodes","viewer.export.card.link.one":"{count} link","viewer.export.card.link.other":"{count} links","viewer.export.card.hop.one":"{count} hop","viewer.export.card.hop.other":"{count} hops","viewer.export.card.routeBadge":"ARCHIFY · ROUTE · {hops}","viewer.export.card.reachBadge":"ARCHIFY · {direction} REACH","viewer.export.card.defaultBadge":"ARCHIFY · {preset} · {theme}","viewer.export.direction.upstream":"Upstream","viewer.export.direction.downstream":"Downstream","viewer.export.error.canvasUnavailable":"Canvas unavailable for {label}","viewer.export.error.contextUnavailable":"2D canvas context unavailable for {label}","viewer.export.error.toBlobUnavailable":"canvas.toBlob unavailable for {label}","viewer.export.error.toBlobNull":"canvas.toBlob returned no data for {label}","viewer.export.error.variantsCombined":"Share Card variants cannot be combined","viewer.export.error.viewerState":"Share Card export could not remove temporary viewer state","viewer.export.error.routeState":"Route Card export could not preserve the resolved route safely","viewer.export.error.reachState":"Reach Card export could not preserve authored reach safely","viewer.export.error.webmRequirements":"WebM motion export requires a trace animation and browser MediaRecorder support","viewer.export.error.mediaRecorder":"MediaRecorder failed","viewer.export.error.emptyWebm":"MediaRecorder produced an empty WebM","viewer.export.error.webmBackground":"SVG background could not be loaded for WebM export","viewer.guided.region":"Guided diagram views","viewer.guided.previous":"Previous guided view","viewer.guided.previous.title":"Previous guided view ([)","viewer.guided.next":"Next guided view","viewer.guided.next.title":"Next guided view (])","viewer.guided.views":"Guided views","viewer.guided.explore":"Explore this system","viewer.guided.intro":"Step through curated paths without changing the source diagram.","viewer.guided.trail":"Story trail","viewer.guided.beat":"Beat","viewer.guided.nextBeat":"Next","viewer.guided.play":"Play guided story","viewer.guided.play.title":"Play guided story (P)","viewer.guided.pause":"Pause guided story","viewer.guided.pause.title":"Pause guided story (P)","viewer.guided.replay":"Replay guided story","viewer.guided.replay.title":"Replay guided story (P)","viewer.guided.playStory":"Play story","viewer.guided.pauseStory":"Pause","viewer.guided.replayStory":"Replay story","viewer.guided.motionUnavailable":"Story playback unavailable while motion is Still","viewer.guided.enableMotion":"Switch motion to Live to play the guided story","viewer.guided.selectBeatLink":"Select a Story Beat to copy its exact link","viewer.guided.copyMoment":"Copy moment","viewer.guided.momentCopied":"Moment link copied","viewer.guided.momentCopyFailed":"Could not copy story moment link","viewer.guided.copied":"Copied","viewer.guided.copyFailed":"Copy failed","viewer.guided.showAll":"Show all","viewer.guided.showAll.aria":"Show entire diagram","viewer.guided.chapters":"Story chapters","viewer.guided.storyTrail":"Story trail for {label}: {count} beats","viewer.guided.chapter.open":"Open chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.current":"Current chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.selectedNodes":"{count} selected nodes","viewer.guided.chapter.stops":"{count} stops","viewer.guided.chapter.stop.one":"{count} stop","viewer.guided.chapter.stop.other":"{count} stops","viewer.guided.chapter.current.title":"{label} — current chapter, {count} stops","viewer.guided.chapter.delta.expanded":"{stay} stay, {enter} enter, {leave} leave","viewer.guided.chapter.delta.aria":"Open chapter {index} of {total}: {label}. Chapter focus delta: {delta}","viewer.guided.chapter.delta.title":"{label} — {delta} chapter focus","viewer.guided.handoff":"{from} → {to} · via {label}","viewer.guided.share.chapter":"Chapter {index} / {total}","viewer.guided.share.initial":"Chapter 01 / 01","viewer.guided.share.default":"Guided chapter","viewer.guided.state.ready":"Ready","viewer.guided.state.playing":"Playing","viewer.guided.state.settled":"Settled","viewer.guided.state.paused":"Paused","viewer.guided.state.pinned":"Pinned","viewer.guided.state.still":"Still","viewer.guided.share.step":"Step {index} / {total} · {label}","viewer.guided.share.staticMoment":"{step} · Static moment","viewer.guided.share.complete":"{count} steps complete · {note}","viewer.guided.share.settled":"Path settled for reading.","viewer.guided.share.staticPath":"{count} steps · Static path","viewer.guided.share.ready":"{count} steps · Ready","viewer.guided.share.aria":"{state} chapter {index} of {total}: {label}. {beat}. {route}","viewer.guided.beat.start":"Beat {index} / {total} · {label} · starting point","viewer.guided.beat.forward":"Beat {index} / {total} · {from} → {to}","viewer.guided.beat.reverse":"Beat {index} / {total} · {from} → {to} · reverse authored link","viewer.guided.beat.multiple":"Beat {index} / {total} · {from} ⇄ {to} · {count} authored links","viewer.guided.beat.group":"Beat {index} / {total} · {from} · {to} · grouped · no direct link","viewer.guided.beat.aria.prefix":"Story beat {index} of {total}: {label}. ","viewer.guided.beat.aria.start":"Starting point.","viewer.guided.beat.aria.forward":"From {from} through one authored forward relationship.","viewer.guided.beat.aria.reverse":"From {from}; the authored relationship points from {to} to {from}.","viewer.guided.beat.aria.multiple":"From {from} through {count} authored relationships; shown without arbitrary motion.","viewer.guided.beat.aria.group":"Grouped from {from} with no direct authored relationship.","viewer.guided.caption.start":"Starting point","viewer.guided.caption.grouped":"Grouped transition · no direct authored link","viewer.guided.caption.more":" +{count} more","viewer.guided.caption.reverse":"Reverse authored relationship","viewer.guided.caption.relationships":"{count} authored relationships","viewer.guided.caption.relationship":"Authored relationship","viewer.guided.caption.direction":"authored direction: {from} → {to}","viewer.guided.caption.starting":"Authored starting point","viewer.guided.beatLink":"Copy link to current story moment: Beat {index} of {total}: {label}","viewer.guided.noStory":"This diagram has no authored guided story.","viewer.guide.eyebrow":"Diagram guide","viewer.guide.close":"Close diagram guide","viewer.guide.inspecting":"Inspecting compiled semantics","viewer.guide.actions":"Diagram exploration actions","viewer.guide.find":"Find any node","viewer.guide.find.hint":"Search labels, responsibilities, kinds, and stable IDs.","viewer.guide.route":"Trace a route","viewer.guide.route.aria":"Trace a directed route","viewer.guide.route.hint":"Ask how two semantic nodes connect in authored direction.","viewer.guide.map":"See the whole system","viewer.guide.map.hint":"Open Semantic Radar with a live viewport and stable nodes.","viewer.guide.lens":"Compare semantic kinds","viewer.guide.lens.hint":"Count roles, reveal their traffic, and compare direct authored links.","viewer.guide.story":"Play the guided story","viewer.guide.story.hint":"Walk the authored chapters and real relationships.","viewer.guide.present":"Enter Presentation Stage","viewer.guide.present.hint":"Give the live diagram the viewport without changing export.","viewer.guide.shortcuts":"Additional keyboard shortcuts","viewer.guide.shortcut.export":"Export","viewer.guide.shortcut.theme":"Theme","viewer.guide.shortcut.style":"Style","viewer.guide.shortcut.reset":"Reset","viewer.guide.shortcut.zoomIn":"Zoom in","viewer.guide.shortcut.zoomOut":"Zoom out","viewer.guide.shortcut.close":"Close","viewer.guide.facts":"{nodes} · {relationships} · {views}","viewer.guide.fact.node.one":"{count} semantic node","viewer.guide.fact.node.other":"{count} semantic nodes","viewer.guide.fact.relationship.one":"{count} relationship","viewer.guide.fact.relationship.other":"{count} relationships","viewer.guide.fact.view.one":"{count} guided view","viewer.guide.fact.view.other":"{count} guided views","viewer.guide.story.available.one":"Walk {count} authored chapter and its real relationships.","viewer.guide.story.available.other":"Walk {count} authored chapters and their real relationships.","viewer.guide.story.unavailable":"No authored guided story in this diagram.","viewer.guide.open":"Open diagram guide","viewer.guide.noStory":"This diagram has no authored guided story.","viewer.finder.title":"Find a node","viewer.finder.close":"Close node finder","viewer.finder.placeholder":"Search labels or IDs","viewer.finder.search":"Search diagram nodes","viewer.finder.results":"Diagram nodes","viewer.finder.empty":"No matching nodes","viewer.finder.result.focus":"Focus {label}","viewer.finder.result.routeStart":"Choose {label} as route start","viewer.finder.result.routeTarget":"Choose {label} as route destination, {links}","viewer.finder.status.empty":"No matching nodes","viewer.finder.status.count.one":"{count} matching node","viewer.finder.status.count.other":"{count} matching nodes","viewer.finder.noun.nodes":"nodes","viewer.finder.link.one":"{count} link","viewer.finder.link.other":"{count} links","viewer.finder.result.focus.one":"Focus {label}, {count} related connection","viewer.finder.result.focus.other":"Focus {label}, {count} related connections","viewer.finder.status.filtered":"{visible} of {available} {noun}","viewer.finder.status.all":"{available} {noun}","viewer.passport.eyebrow":"Semantic passport","viewer.passport.metadata":"Node metadata","viewer.passport.evidence":"Verified source evidence","viewer.passport.verified":"Verified source","viewer.passport.reach":"Authored reach","viewer.passport.reach.trace":"Trace authored reachability","viewer.passport.upstream":"Upstream","viewer.passport.downstream":"Downstream","viewer.passport.upstream.trace":"Trace upstream authored reachability","viewer.passport.downstream.trace":"Trace downstream authored reachability","viewer.passport.close":"Close semantic passport","viewer.passport.copy":"Copy link","viewer.passport.copy.focus":"Copy link to focused node","viewer.passport.relations":"Relations","viewer.passport.relations.show":"Show connected relationships","viewer.passport.relations.hide":"Hide connected relationships","viewer.passport.relations.list":"Connected relationships","viewer.passport.copyRelation":"Copy relation","viewer.passport.copyNode":"Copy node","viewer.passport.copyPinned":"Copy link to pinned relationship","viewer.passport.copySource":"Copy link to source node","viewer.passport.copy.focused.success":"Focused node link copied","viewer.passport.copy.pinned.success":"Pinned relationship link copied","viewer.passport.copy.focused.failed":"Could not copy focused node link","viewer.passport.copy.pinned.failed":"Could not copy pinned relationship link","viewer.passport.relationship.none":"No connected relationships","viewer.passport.relationship.count.one":"{count} relation","viewer.passport.relationship.count.other":"{count} relations","viewer.passport.relationship.show.one":"Show {count} connected relationship","viewer.passport.relationship.show.other":"Show {count} connected relationships","viewer.passport.relationship.summary":"{out} outgoing · {in} incoming{loops}","viewer.passport.relationship.loops":" · {count} loop","viewer.passport.relationship.explorer":"Direct relationship explorer","viewer.passport.relationship.help":"Use arrow keys to explore relationships. Press Enter or Space to pin details; Escape clears.","viewer.passport.relationship.loopsBack":"loops back","viewer.passport.relationship.connectsTo":"connects to","viewer.passport.relationship.connectsFrom":"connects from","viewer.passport.relationship.pinned":"Pinned relationship · {from} → {to} · {label}","viewer.passport.relationship.inspect":"Inspect relationship {index} of {total}: {from} to {to}, {label}. Press Enter for details.","viewer.passport.relationship.group.out":"Outgoing","viewer.passport.relationship.group.in":"Incoming","viewer.passport.relationship.group.loop":"Self loops","viewer.passport.relationship.row":"{group}: {relationship}, {neighbor}","viewer.passport.relationship.direction.out":"OUT →","viewer.passport.relationship.direction.in":"← IN","viewer.passport.relationship.direction.loop":"LOOP","viewer.passport.sourceCount.one":"{count} verified source reference","viewer.passport.sourceCount.other":"{count} verified source references","viewer.passport.sourceMarker":"SRC","viewer.passport.beacon.one":"{count} verified source; focus this node to inspect","viewer.passport.beacon.other":"{count} verified sources; focus this node to inspect","viewer.passport.repository.open":"Open verified repository revision {revision}","viewer.passport.source.open":"Open verified source {path} at revision {revision}","viewer.passport.source.openLink":"Open ↗","viewer.passport.reach.upstream.one":"Trace {count} upstream authored node","viewer.passport.reach.upstream.other":"Trace {count} upstream authored nodes","viewer.passport.reach.downstream.one":"Trace {count} downstream authored node","viewer.passport.reach.downstream.other":"Trace {count} downstream authored nodes","viewer.passport.reach.noUpstream":"No upstream authored nodes","viewer.passport.reach.noDownstream":"No downstream authored nodes","viewer.passport.reach.status":"{direction} · {nodes} nodes · {links} links · max {hops} hops","viewer.route.eyebrow":"Route probe","viewer.route.start":"Choose a start node","viewer.route.start.find":"Find start","viewer.route.start.find.aria":"Find a route start","viewer.route.copy":"Copy link","viewer.route.copy.aria":"Copy link to traced route","viewer.route.clear":"Clear","viewer.route.clear.aria":"Clear route probe","viewer.route.traced":"Traced route","viewer.route.pickTwo":"Pick two semantic nodes on the diagram","viewer.route.pickOne":"Pick a semantic node on the diagram","viewer.route.controls":"Route journey controls","viewer.route.previous":"Previous route position","viewer.route.play":"Play route journey","viewer.route.pause":"Pause route journey","viewer.route.replay":"Replay route journey","viewer.route.next":"Next route position","viewer.route.journey":"Journey","viewer.route.pause.label":"Pause","viewer.route.replay.label":"Replay","viewer.route.overview":"Overview","viewer.route.overview.aria":"Show complete route overview","viewer.route.instructions":"Choose the source, then the destination. Direction matters.","viewer.route.destination":"Choose a destination from {label}","viewer.route.destination.find":"Find target","viewer.route.destination.find.aria":"Find a reachable route destination","viewer.route.differentDestination":"Choose a different destination","viewer.route.distinct":"A route needs two distinct semantic nodes.","viewer.route.unreachable":"No directed route to {label}","viewer.route.unreachable.detail":"{target} is not reachable from {source}. Pick a highlighted destination.","viewer.route.start.instructions":"Select the source. The next step will reveal only directed destinations.","viewer.route.copy.success":"Traced route link copied","viewer.route.copy.failed":"Could not copy traced route link","viewer.route.position":"Route position {index} of {total}: {label}","viewer.route.step":"Step {index} of {total} · {phase} · {label}","viewer.route.motionRequired":"Automatic journey requires Live motion","viewer.route.trigger.clear":"Clear traced route","viewer.route.overview.status":"{nodes} · {hops} · shortest authored route","viewer.route.overview.node.one":"{count} node","viewer.route.overview.node.other":"{count} nodes","viewer.route.overview.hop.one":"{count} directed hop","viewer.route.overview.hop.other":"{count} directed hops","viewer.route.phase.playing":"Playing","viewer.route.phase.complete":"Complete","viewer.route.phase.inspecting":"Inspecting","viewer.route.destination.count.one":"{count} directed destination available. Pick a highlighted node.","viewer.route.destination.count.other":"{count} directed destinations available. Pick a highlighted node.","viewer.route.noOutgoing":"No outgoing route starts here. Clear and choose another source.","viewer.route.result.title":"{source} to {target}","viewer.route.finder.source.title":"Choose route start","viewer.route.finder.source.placeholder":"Search route sources","viewer.route.finder.source.empty":"No matching route sources","viewer.route.finder.source.results":"Nodes that can start a route","viewer.route.finder.source.noun":"route sources","viewer.route.finder.source.badge":"start","viewer.route.finder.target.title":"Destination from {label}","viewer.route.finder.target.placeholder":"Search reachable destinations","viewer.route.finder.target.empty":"No matching reachable destinations","viewer.route.finder.target.results":"Reachable route destinations","viewer.route.finder.target.noun":"reachable destinations","viewer.route.hop.one":"{count} hop","viewer.route.hop.other":"{count} hops","viewer.lens.eyebrow":"Semantic lens","viewer.lens.title":"Compare system roles","viewer.lens.close":"Close semantic lens","viewer.lens.instruction":"Choose up to two semantic kinds. One reveals its real traffic; two compare only direct authored relationships.","viewer.lens.kinds":"Semantic kinds","viewer.lens.choose":"Choose a kind to inspect its nodes and touching relationships.","viewer.lens.copy":"Copy link to semantic lens","viewer.lens.clear":"Clear semantic lens","viewer.lens.open":"Open semantic lens","viewer.lens.openActive":"Open active semantic lens","viewer.lens.legend":"Semantic legend","viewer.lens.legend.inspect.one":"Inspect {label}, {count} node","viewer.lens.legend.inspect.other":"Inspect {label}, {count} nodes","viewer.lens.kind.count.one":"{label}, {count} node","viewer.lens.kind.count.other":"{label}, {count} nodes","viewer.lens.compare.one":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationship","viewer.lens.compare.other":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationships","viewer.lens.single":"{nodes} · {relationships} · connected peers remain visible","viewer.lens.node.one":"{count} {label} node","viewer.lens.node.other":"{count} {label} nodes","viewer.lens.relationship.one":"{count} touching relationship","viewer.lens.relationship.other":"{count} touching relationships","viewer.radar.title":"Semantic radar","viewer.radar.building":"Building overview","viewer.radar.openFull":"Open full semantic radar","viewer.radar.open":"Open radar","viewer.radar.close":"Close semantic radar","viewer.radar.surface":"Diagram overview. Click a node to focus it, or use arrow keys to pan.","viewer.radar.click":"Click node","viewer.radar.drag":"Drag to pan","viewer.radar.space":"Semantic radar needs more MAP space.","viewer.radar.nodes":"Semantic diagram radar nodes","viewer.radar.focus":"Focus {label} from Semantic Radar","viewer.radar.status":"{count} nodes · {viewport}","viewer.radar.fullMap":"{count} nodes · full map","viewer.radar.compacted":"Radar compacted to avoid covering the Semantic Passport or MAP controls.","viewer.radar.cancelWaiting":"Cancel semantic radar waiting for more MAP space","viewer.radar.needsSpace":"Semantic radar needs more visible MAP space","viewer.radar.viewport.full":"full map","viewer.radar.viewport.width":"{percent}% width","viewer.radar.viewport.scale":"{percent}% viewport","viewer.nav.controls":"Diagram view controls","viewer.nav.route":"Trace a directed route","viewer.nav.route.title":"Trace route (R)","viewer.nav.route.short":"PATH","viewer.nav.radar":"Open semantic radar","viewer.nav.radar.title":"Semantic radar (M)","viewer.nav.radar.short":"MAP","viewer.nav.lens":"Open semantic lens","viewer.nav.lens.title":"Semantic lens (L)","viewer.nav.lens.short":"LENS","viewer.nav.find":"Find a node","viewer.nav.find.title":"Find a node (/)","viewer.nav.guide":"Open diagram guide","viewer.nav.guide.title":"Diagram guide (?)","viewer.nav.zoomOut":"Zoom out","viewer.nav.zoomOut.title":"Zoom out (-)","viewer.nav.reset":"Reset diagram view","viewer.nav.reset.title":"Reset view (0)","viewer.nav.read":"READ","viewer.nav.zoomIn":"Zoom in","viewer.nav.zoomIn.title":"Zoom in (+)","viewer.nav.camera":"{hint}. Reset diagram view","viewer.nav.camera.title":"{semantic}{hint} · reset view (0)","viewer.nav.camera.semantic":"Semantic camera active · ","viewer.nav.level.map":"MAP","viewer.nav.level.read":"READ","viewer.nav.level.full":"FULL","viewer.nav.level.auto":"AUTO","viewer.nav.detail.map":"Zoom in to reveal relationship labels and node context","viewer.nav.detail.read":"Zoom in again to reveal tags and annotations","viewer.nav.detail.full":"Full diagram detail","viewer.intent.summary":"{label}. {out} outgoing, {in} incoming{loops}. {total} connections. Press Enter for details.","viewer.intent.loops":", {count} self loop","viewer.common.copied":"Copied","viewer.common.copyFailed":"Copy failed","viewer.common.copyLink":"Copy link","viewer.common.clear":"Clear","viewer.common.close":"Close"}}</script>
+    <script id="archify-i18n-data" type="application/json">{"locale":"en","messages":{"viewer.kind.frontend":"Frontend","viewer.kind.backend":"Backend","viewer.kind.database":"Database","viewer.kind.cloud":"Cloud","viewer.kind.security":"Security","viewer.kind.messagebus":"Message bus","viewer.kind.external":"External","viewer.kind.neutral":"Neutral","viewer.kind.node":"Node","viewer.kind.start":"Start","viewer.kind.active":"Active","viewer.kind.waiting":"Waiting","viewer.kind.decision":"Decision","viewer.kind.success":"Success","viewer.kind.failure":"Failure","viewer.toolbar.actions":"Diagram actions","viewer.theme.toggle.title":"Toggle theme (T)","viewer.theme.toggle":"Toggle color theme","viewer.theme.dark":"Dark","viewer.theme.light":"Light","viewer.preset.choose.title":"Choose visual style (S cycles)","viewer.preset.choose":"Choose visual style","viewer.preset.style":"Style","viewer.preset.menu":"Visual style","viewer.preset.identity":"Visual identity","viewer.preset.cycles":"S cycles","viewer.preset.classic":"Classic","viewer.preset.classic.short":"Classic","viewer.preset.classic.hint":"Stable technical default","viewer.preset.flow":"Signal Flow","viewer.preset.flow.short":"Flow","viewer.preset.flow.hint":"Motion-forward presentation","viewer.preset.blueprint":"Blueprint","viewer.preset.blueprint.hint":"Engineering review","viewer.preset.editorial":"Editorial","viewer.preset.editorial.hint":"Publication and launch notes","viewer.preset.badge.signalFlow":"SIGNAL FLOW","viewer.preset.badge.blueprint":"BLUEPRINT / REV 01","viewer.preset.badge.editorial":"EDITORIAL / FIELD NOTE","viewer.preset.badge.editorialPlate":"WEB3 STORAGE / PLATE 04","viewer.preset.current":"Visual style: {style}. Choose visual style","viewer.motion.live":"Live","viewer.motion.still":"Still","viewer.motion.pause":"Pause motion","viewer.motion.resume":"Resume motion","viewer.motion.reduced":"Motion paused by reduced-motion preference","viewer.motion.hidden":"Motion paused while this page is hidden","viewer.motion.yielding":"Pause motion; currently yielding to {owner}","viewer.motion.yielding.title":"Live preview enabled · yielding to {owner}","viewer.owner.story":"the guided story","viewer.owner.chapter":"the active chapter","viewer.owner.chapterPreview":"the chapter delta preview","viewer.owner.handoff":"the chapter handoff","viewer.owner.route":"Route Probe","viewer.owner.lens":"Semantic Lens","viewer.owner.relationship":"Relationship Preview","viewer.owner.intent":"Intent Trace","viewer.owner.focus":"semantic focus","viewer.owner.legend":"legend preview","viewer.owner.reader":"reader interaction","viewer.present.enter":"Enter presentation stage","viewer.present.enter.title":"Presentation stage (F)","viewer.present.exit":"Exit presentation stage","viewer.present.exit.title":"Exit presentation stage (F or Escape)","viewer.present.present":"Present","viewer.present.exit.label":"Exit","viewer.export.button":"Export","viewer.export.button.title":"Export diagram (E)","viewer.export.diagram":"Export diagram","viewer.export.menu":"Export","viewer.export.subtitle":"Portable, clean outputs","viewer.export.share":"Share","viewer.export.shareCard":"Share Card","viewer.export.routeShareCard":"Route Share Card","viewer.export.reachShareCard":"Reach Share Card","viewer.export.copyShareCard":"Copy Share Card","viewer.export.copyDiagram":"Copy diagram","viewer.export.clipboardPng":"PNG to clipboard","viewer.export.raster":"Raster images","viewer.export.image":"Image","viewer.export.lossless":"Lossless image","viewer.export.compact":"Compact image","viewer.export.modern":"Modern image","viewer.export.vectorMotion":"Vector and motion","viewer.export.vectorMotion.heading":"Vector \u0026 motion","viewer.export.editable":"Editable vector","viewer.export.motion6s":"6s motion","viewer.export.unsupported":"Not supported by this browser","viewer.export.clipboardUnsupported":"Clipboard image write not supported by this browser","viewer.export.clipboardUnsupported.period":"Clipboard image write not supported by this browser.","viewer.export.clipboardUnsupported.short":"Clipboard image write not supported in this browser.","viewer.export.motionUnavailable":"Motion capture unavailable in this browser","viewer.export.webmUnavailable":"WebM unavailable in this browser","viewer.export.failed":"Export failed: {message}","viewer.export.unknownVariant":"Unknown Share Card variant: {variant}","viewer.export.routeRequired":"Trace a route before exporting a Route Share Card","viewer.export.reachRequired":"Trace authored reach before exporting a Reach Share Card","viewer.export.unknown":"unknown","viewer.export.routeFailed":"Route Share Card export failed: {message}","viewer.export.reachFailed":"Reach Share Card export failed: {message}","viewer.export.copyFailed":"Copy failed: {message}","viewer.export.copiedPng":"Copied PNG to clipboard","viewer.export.copiedShare":"Copied Share Card","viewer.export.downloadedShare":"Downloaded Share Card","viewer.export.downloadedRoute":"Downloaded Route Share Card","viewer.export.downloadedReach":"Downloaded Reach Share Card","viewer.export.downloadedWebm":"Downloaded WebM","viewer.export.recording":"Recording 6 seconds of motion…","viewer.export.card.routeSummary.one":"Route: {source} → {target} · {count} directed hop","viewer.export.card.routeSummary.other":"Route: {source} → {target} · {count} directed hops","viewer.export.card.reachSummary":"Authored {direction} from {origin} · {nodes} · {links} · max {hops}","viewer.export.card.node.one":"{count} node","viewer.export.card.node.other":"{count} nodes","viewer.export.card.link.one":"{count} link","viewer.export.card.link.other":"{count} links","viewer.export.card.hop.one":"{count} hop","viewer.export.card.hop.other":"{count} hops","viewer.export.card.routeBadge":"WEB3 STORAGE · ROUTE · {hops}","viewer.export.card.reachBadge":"WEB3 STORAGE · {direction} REACH","viewer.export.card.defaultBadge":"WEB3 STORAGE · {preset} · {theme}","viewer.export.direction.upstream":"Upstream","viewer.export.direction.downstream":"Downstream","viewer.export.error.canvasUnavailable":"Canvas unavailable for {label}","viewer.export.error.contextUnavailable":"2D canvas context unavailable for {label}","viewer.export.error.toBlobUnavailable":"canvas.toBlob unavailable for {label}","viewer.export.error.toBlobNull":"canvas.toBlob returned no data for {label}","viewer.export.error.variantsCombined":"Share Card variants cannot be combined","viewer.export.error.viewerState":"Share Card export could not remove temporary viewer state","viewer.export.error.routeState":"Route Card export could not preserve the resolved route safely","viewer.export.error.reachState":"Reach Card export could not preserve authored reach safely","viewer.export.error.webmRequirements":"WebM motion export requires a trace animation and browser MediaRecorder support","viewer.export.error.mediaRecorder":"MediaRecorder failed","viewer.export.error.emptyWebm":"MediaRecorder produced an empty WebM","viewer.export.error.webmBackground":"SVG background could not be loaded for WebM export","viewer.guided.region":"Guided diagram views","viewer.guided.previous":"Previous guided view","viewer.guided.previous.title":"Previous guided view ([)","viewer.guided.next":"Next guided view","viewer.guided.next.title":"Next guided view (])","viewer.guided.views":"Guided views","viewer.guided.explore":"Explore this system","viewer.guided.intro":"Step through curated paths without changing the source diagram.","viewer.guided.trail":"Story trail","viewer.guided.beat":"Beat","viewer.guided.nextBeat":"Next","viewer.guided.play":"Play guided story","viewer.guided.play.title":"Play guided story (P)","viewer.guided.pause":"Pause guided story","viewer.guided.pause.title":"Pause guided story (P)","viewer.guided.replay":"Replay guided story","viewer.guided.replay.title":"Replay guided story (P)","viewer.guided.playStory":"Play story","viewer.guided.pauseStory":"Pause","viewer.guided.replayStory":"Replay story","viewer.guided.motionUnavailable":"Story playback unavailable while motion is Still","viewer.guided.enableMotion":"Switch motion to Live to play the guided story","viewer.guided.selectBeatLink":"Select a Story Beat to copy its exact link","viewer.guided.copyMoment":"Copy moment","viewer.guided.momentCopied":"Moment link copied","viewer.guided.momentCopyFailed":"Could not copy story moment link","viewer.guided.copied":"Copied","viewer.guided.copyFailed":"Copy failed","viewer.guided.showAll":"Show all","viewer.guided.showAll.aria":"Show entire diagram","viewer.guided.chapters":"Story chapters","viewer.guided.storyTrail":"Story trail for {label}: {count} beats","viewer.guided.chapter.open":"Open chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.current":"Current chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.selectedNodes":"{count} selected nodes","viewer.guided.chapter.stops":"{count} stops","viewer.guided.chapter.stop.one":"{count} stop","viewer.guided.chapter.stop.other":"{count} stops","viewer.guided.chapter.current.title":"{label} — current chapter, {count} stops","viewer.guided.chapter.delta.expanded":"{stay} stay, {enter} enter, {leave} leave","viewer.guided.chapter.delta.aria":"Open chapter {index} of {total}: {label}. Chapter focus delta: {delta}","viewer.guided.chapter.delta.title":"{label} — {delta} chapter focus","viewer.guided.handoff":"{from} → {to} · via {label}","viewer.guided.share.chapter":"Chapter {index} / {total}","viewer.guided.share.initial":"Chapter 01 / 01","viewer.guided.share.default":"Guided chapter","viewer.guided.state.ready":"Ready","viewer.guided.state.playing":"Playing","viewer.guided.state.settled":"Settled","viewer.guided.state.paused":"Paused","viewer.guided.state.pinned":"Pinned","viewer.guided.state.still":"Still","viewer.guided.share.step":"Step {index} / {total} · {label}","viewer.guided.share.staticMoment":"{step} · Static moment","viewer.guided.share.complete":"{count} steps complete · {note}","viewer.guided.share.settled":"Path settled for reading.","viewer.guided.share.staticPath":"{count} steps · Static path","viewer.guided.share.ready":"{count} steps · Ready","viewer.guided.share.aria":"{state} chapter {index} of {total}: {label}. {beat}. {route}","viewer.guided.beat.start":"Beat {index} / {total} · {label} · starting point","viewer.guided.beat.forward":"Beat {index} / {total} · {from} → {to}","viewer.guided.beat.reverse":"Beat {index} / {total} · {from} → {to} · reverse authored link","viewer.guided.beat.multiple":"Beat {index} / {total} · {from} ⇄ {to} · {count} authored links","viewer.guided.beat.group":"Beat {index} / {total} · {from} · {to} · grouped · no direct link","viewer.guided.beat.aria.prefix":"Story beat {index} of {total}: {label}. ","viewer.guided.beat.aria.start":"Starting point.","viewer.guided.beat.aria.forward":"From {from} through one authored forward relationship.","viewer.guided.beat.aria.reverse":"From {from}; the authored relationship points from {to} to {from}.","viewer.guided.beat.aria.multiple":"From {from} through {count} authored relationships; shown without arbitrary motion.","viewer.guided.beat.aria.group":"Grouped from {from} with no direct authored relationship.","viewer.guided.caption.start":"Starting point","viewer.guided.caption.grouped":"Grouped transition · no direct authored link","viewer.guided.caption.more":" +{count} more","viewer.guided.caption.reverse":"Reverse authored relationship","viewer.guided.caption.relationships":"{count} authored relationships","viewer.guided.caption.relationship":"Authored relationship","viewer.guided.caption.direction":"authored direction: {from} → {to}","viewer.guided.caption.starting":"Authored starting point","viewer.guided.beatLink":"Copy link to current story moment: Beat {index} of {total}: {label}","viewer.guided.noStory":"This diagram has no authored guided story.","viewer.guide.eyebrow":"Diagram guide","viewer.guide.close":"Close diagram guide","viewer.guide.inspecting":"Inspecting compiled semantics","viewer.guide.actions":"Diagram exploration actions","viewer.guide.find":"Find any node","viewer.guide.find.hint":"Search labels, responsibilities, kinds, and stable IDs.","viewer.guide.route":"Trace a route","viewer.guide.route.aria":"Trace a directed route","viewer.guide.route.hint":"Ask how two semantic nodes connect in authored direction.","viewer.guide.map":"See the whole system","viewer.guide.map.hint":"Open Semantic Radar with a live viewport and stable nodes.","viewer.guide.lens":"Compare semantic kinds","viewer.guide.lens.hint":"Count roles, reveal their traffic, and compare direct authored links.","viewer.guide.story":"Play the guided story","viewer.guide.story.hint":"Walk the authored chapters and real relationships.","viewer.guide.present":"Enter Presentation Stage","viewer.guide.present.hint":"Give the live diagram the viewport without changing export.","viewer.guide.shortcuts":"Additional keyboard shortcuts","viewer.guide.shortcut.export":"Export","viewer.guide.shortcut.theme":"Theme","viewer.guide.shortcut.style":"Style","viewer.guide.shortcut.reset":"Reset","viewer.guide.shortcut.zoomIn":"Zoom in","viewer.guide.shortcut.zoomOut":"Zoom out","viewer.guide.shortcut.close":"Close","viewer.guide.facts":"{nodes} · {relationships} · {views}","viewer.guide.fact.node.one":"{count} semantic node","viewer.guide.fact.node.other":"{count} semantic nodes","viewer.guide.fact.relationship.one":"{count} relationship","viewer.guide.fact.relationship.other":"{count} relationships","viewer.guide.fact.view.one":"{count} guided view","viewer.guide.fact.view.other":"{count} guided views","viewer.guide.story.available.one":"Walk {count} authored chapter and its real relationships.","viewer.guide.story.available.other":"Walk {count} authored chapters and their real relationships.","viewer.guide.story.unavailable":"No authored guided story in this diagram.","viewer.guide.open":"Open diagram guide","viewer.guide.noStory":"This diagram has no authored guided story.","viewer.finder.title":"Find a node","viewer.finder.close":"Close node finder","viewer.finder.placeholder":"Search labels or IDs","viewer.finder.search":"Search diagram nodes","viewer.finder.results":"Diagram nodes","viewer.finder.empty":"No matching nodes","viewer.finder.result.focus":"Focus {label}","viewer.finder.result.routeStart":"Choose {label} as route start","viewer.finder.result.routeTarget":"Choose {label} as route destination, {links}","viewer.finder.status.empty":"No matching nodes","viewer.finder.status.count.one":"{count} matching node","viewer.finder.status.count.other":"{count} matching nodes","viewer.finder.noun.nodes":"nodes","viewer.finder.link.one":"{count} link","viewer.finder.link.other":"{count} links","viewer.finder.result.focus.one":"Focus {label}, {count} related connection","viewer.finder.result.focus.other":"Focus {label}, {count} related connections","viewer.finder.status.filtered":"{visible} of {available} {noun}","viewer.finder.status.all":"{available} {noun}","viewer.passport.eyebrow":"Semantic passport","viewer.passport.metadata":"Node metadata","viewer.passport.evidence":"Verified source evidence","viewer.passport.verified":"Verified source","viewer.passport.reach":"Authored reach","viewer.passport.reach.trace":"Trace authored reachability","viewer.passport.upstream":"Upstream","viewer.passport.downstream":"Downstream","viewer.passport.upstream.trace":"Trace upstream authored reachability","viewer.passport.downstream.trace":"Trace downstream authored reachability","viewer.passport.close":"Close semantic passport","viewer.passport.copy":"Copy link","viewer.passport.copy.focus":"Copy link to focused node","viewer.passport.relations":"Relations","viewer.passport.relations.show":"Show connected relationships","viewer.passport.relations.hide":"Hide connected relationships","viewer.passport.relations.list":"Connected relationships","viewer.passport.copyRelation":"Copy relation","viewer.passport.copyNode":"Copy node","viewer.passport.copyPinned":"Copy link to pinned relationship","viewer.passport.copySource":"Copy link to source node","viewer.passport.copy.focused.success":"Focused node link copied","viewer.passport.copy.pinned.success":"Pinned relationship link copied","viewer.passport.copy.focused.failed":"Could not copy focused node link","viewer.passport.copy.pinned.failed":"Could not copy pinned relationship link","viewer.passport.relationship.none":"No connected relationships","viewer.passport.relationship.count.one":"{count} relation","viewer.passport.relationship.count.other":"{count} relations","viewer.passport.relationship.show.one":"Show {count} connected relationship","viewer.passport.relationship.show.other":"Show {count} connected relationships","viewer.passport.relationship.summary":"{out} outgoing · {in} incoming{loops}","viewer.passport.relationship.loops":" · {count} loop","viewer.passport.relationship.explorer":"Direct relationship explorer","viewer.passport.relationship.help":"Use arrow keys to explore relationships. Press Enter or Space to pin details; Escape clears.","viewer.passport.relationship.loopsBack":"loops back","viewer.passport.relationship.connectsTo":"connects to","viewer.passport.relationship.connectsFrom":"connects from","viewer.passport.relationship.pinned":"Pinned relationship · {from} → {to} · {label}","viewer.passport.relationship.inspect":"Inspect relationship {index} of {total}: {from} to {to}, {label}. Press Enter for details.","viewer.passport.relationship.group.out":"Outgoing","viewer.passport.relationship.group.in":"Incoming","viewer.passport.relationship.group.loop":"Self loops","viewer.passport.relationship.row":"{group}: {relationship}, {neighbor}","viewer.passport.relationship.direction.out":"OUT →","viewer.passport.relationship.direction.in":"← IN","viewer.passport.relationship.direction.loop":"LOOP","viewer.passport.sourceCount.one":"{count} verified source reference","viewer.passport.sourceCount.other":"{count} verified source references","viewer.passport.sourceMarker":"SRC","viewer.passport.beacon.one":"{count} verified source; focus this node to inspect","viewer.passport.beacon.other":"{count} verified sources; focus this node to inspect","viewer.passport.repository.open":"Open verified repository revision {revision}","viewer.passport.source.open":"Open verified source {path} at revision {revision}","viewer.passport.source.openLink":"Open ↗","viewer.passport.reach.upstream.one":"Trace {count} upstream authored node","viewer.passport.reach.upstream.other":"Trace {count} upstream authored nodes","viewer.passport.reach.downstream.one":"Trace {count} downstream authored node","viewer.passport.reach.downstream.other":"Trace {count} downstream authored nodes","viewer.passport.reach.noUpstream":"No upstream authored nodes","viewer.passport.reach.noDownstream":"No downstream authored nodes","viewer.passport.reach.status":"{direction} · {nodes} nodes · {links} links · max {hops} hops","viewer.route.eyebrow":"Route probe","viewer.route.start":"Choose a start node","viewer.route.start.find":"Find start","viewer.route.start.find.aria":"Find a route start","viewer.route.copy":"Copy link","viewer.route.copy.aria":"Copy link to traced route","viewer.route.clear":"Clear","viewer.route.clear.aria":"Clear route probe","viewer.route.traced":"Traced route","viewer.route.pickTwo":"Pick two semantic nodes on the diagram","viewer.route.pickOne":"Pick a semantic node on the diagram","viewer.route.controls":"Route journey controls","viewer.route.previous":"Previous route position","viewer.route.play":"Play route journey","viewer.route.pause":"Pause route journey","viewer.route.replay":"Replay route journey","viewer.route.next":"Next route position","viewer.route.journey":"Journey","viewer.route.pause.label":"Pause","viewer.route.replay.label":"Replay","viewer.route.overview":"Overview","viewer.route.overview.aria":"Show complete route overview","viewer.route.instructions":"Choose the source, then the destination. Direction matters.","viewer.route.destination":"Choose a destination from {label}","viewer.route.destination.find":"Find target","viewer.route.destination.find.aria":"Find a reachable route destination","viewer.route.differentDestination":"Choose a different destination","viewer.route.distinct":"A route needs two distinct semantic nodes.","viewer.route.unreachable":"No directed route to {label}","viewer.route.unreachable.detail":"{target} is not reachable from {source}. Pick a highlighted destination.","viewer.route.start.instructions":"Select the source. The next step will reveal only directed destinations.","viewer.route.copy.success":"Traced route link copied","viewer.route.copy.failed":"Could not copy traced route link","viewer.route.position":"Route position {index} of {total}: {label}","viewer.route.step":"Step {index} of {total} · {phase} · {label}","viewer.route.motionRequired":"Automatic journey requires Live motion","viewer.route.trigger.clear":"Clear traced route","viewer.route.overview.status":"{nodes} · {hops} · shortest authored route","viewer.route.overview.node.one":"{count} node","viewer.route.overview.node.other":"{count} nodes","viewer.route.overview.hop.one":"{count} directed hop","viewer.route.overview.hop.other":"{count} directed hops","viewer.route.phase.playing":"Playing","viewer.route.phase.complete":"Complete","viewer.route.phase.inspecting":"Inspecting","viewer.route.destination.count.one":"{count} directed destination available. Pick a highlighted node.","viewer.route.destination.count.other":"{count} directed destinations available. Pick a highlighted node.","viewer.route.noOutgoing":"No outgoing route starts here. Clear and choose another source.","viewer.route.result.title":"{source} to {target}","viewer.route.finder.source.title":"Choose route start","viewer.route.finder.source.placeholder":"Search route sources","viewer.route.finder.source.empty":"No matching route sources","viewer.route.finder.source.results":"Nodes that can start a route","viewer.route.finder.source.noun":"route sources","viewer.route.finder.source.badge":"start","viewer.route.finder.target.title":"Destination from {label}","viewer.route.finder.target.placeholder":"Search reachable destinations","viewer.route.finder.target.empty":"No matching reachable destinations","viewer.route.finder.target.results":"Reachable route destinations","viewer.route.finder.target.noun":"reachable destinations","viewer.route.hop.one":"{count} hop","viewer.route.hop.other":"{count} hops","viewer.lens.eyebrow":"Semantic lens","viewer.lens.title":"Compare system roles","viewer.lens.close":"Close semantic lens","viewer.lens.instruction":"Choose up to two semantic kinds. One reveals its real traffic; two compare only direct authored relationships.","viewer.lens.kinds":"Semantic kinds","viewer.lens.choose":"Choose a kind to inspect its nodes and touching relationships.","viewer.lens.copy":"Copy link to semantic lens","viewer.lens.clear":"Clear semantic lens","viewer.lens.open":"Open semantic lens","viewer.lens.openActive":"Open active semantic lens","viewer.lens.legend":"Semantic legend","viewer.lens.legend.inspect.one":"Inspect {label}, {count} node","viewer.lens.legend.inspect.other":"Inspect {label}, {count} nodes","viewer.lens.kind.count.one":"{label}, {count} node","viewer.lens.kind.count.other":"{label}, {count} nodes","viewer.lens.compare.one":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationship","viewer.lens.compare.other":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationships","viewer.lens.single":"{nodes} · {relationships} · connected peers remain visible","viewer.lens.node.one":"{count} {label} node","viewer.lens.node.other":"{count} {label} nodes","viewer.lens.relationship.one":"{count} touching relationship","viewer.lens.relationship.other":"{count} touching relationships","viewer.radar.title":"Semantic radar","viewer.radar.building":"Building overview","viewer.radar.openFull":"Open full semantic radar","viewer.radar.open":"Open radar","viewer.radar.close":"Close semantic radar","viewer.radar.surface":"Diagram overview. Click a node to focus it, or use arrow keys to pan.","viewer.radar.click":"Click node","viewer.radar.drag":"Drag to pan","viewer.radar.space":"Semantic radar needs more MAP space.","viewer.radar.nodes":"Semantic diagram radar nodes","viewer.radar.focus":"Focus {label} from Semantic Radar","viewer.radar.status":"{count} nodes · {viewport}","viewer.radar.fullMap":"{count} nodes · full map","viewer.radar.compacted":"Radar compacted to avoid covering the Semantic Passport or MAP controls.","viewer.radar.cancelWaiting":"Cancel semantic radar waiting for more MAP space","viewer.radar.needsSpace":"Semantic radar needs more visible MAP space","viewer.radar.viewport.full":"full map","viewer.radar.viewport.width":"{percent}% width","viewer.radar.viewport.scale":"{percent}% viewport","viewer.nav.controls":"Diagram view controls","viewer.nav.route":"Trace a directed route","viewer.nav.route.title":"Trace route (R)","viewer.nav.route.short":"PATH","viewer.nav.radar":"Open semantic radar","viewer.nav.radar.title":"Semantic radar (M)","viewer.nav.radar.short":"MAP","viewer.nav.lens":"Open semantic lens","viewer.nav.lens.title":"Semantic lens (L)","viewer.nav.lens.short":"LENS","viewer.nav.find":"Find a node","viewer.nav.find.title":"Find a node (/)","viewer.nav.guide":"Open diagram guide","viewer.nav.guide.title":"Diagram guide (?)","viewer.nav.zoomOut":"Zoom out","viewer.nav.zoomOut.title":"Zoom out (-)","viewer.nav.reset":"Reset diagram view","viewer.nav.reset.title":"Reset view (0)","viewer.nav.read":"READ","viewer.nav.zoomIn":"Zoom in","viewer.nav.zoomIn.title":"Zoom in (+)","viewer.nav.camera":"{hint}. Reset diagram view","viewer.nav.camera.title":"{semantic}{hint} · reset view (0)","viewer.nav.camera.semantic":"Semantic camera active · ","viewer.nav.level.map":"MAP","viewer.nav.level.read":"READ","viewer.nav.level.full":"FULL","viewer.nav.level.auto":"AUTO","viewer.nav.detail.map":"Zoom in to reveal relationship labels and node context","viewer.nav.detail.read":"Zoom in again to reveal tags and annotations","viewer.nav.detail.full":"Full diagram detail","viewer.intent.summary":"{label}. {out} outgoing, {in} incoming{loops}. {total} connections. Press Enter for details.","viewer.intent.loops":", {count} self loop","viewer.common.copied":"Copied","viewer.common.copyFailed":"Copy failed","viewer.common.copyLink":"Copy link","viewer.common.clear":"Clear","viewer.common.close":"Close"}}</script>
     <div class="guided-views no-print" id="guided-views" hidden aria-label="Guided diagram views">
       <button id="guided-view-prev" type="button" aria-label="Previous guided view" title="Previous guided view ([)">&#8592;</button>
       <div class="guided-view-copy">
@@ -5003,10 +5003,10 @@
 
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
-         data-preset-badge-editorial-plate="ARCHIFY / PLATE 04">
-      <svg viewBox="0 0 1060 780" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
-        <title id="archify-diagram-title">Storage Agreement Setup</title>
-        <desc id="archify-diagram-description">A sequence diagram generated by Archify.</desc>
+         data-preset-badge-editorial-plate="WEB3 STORAGE / PLATE 04">
+      <svg viewBox="0 0 1068 604" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">Funds Flow</title>
+        <desc id="archify-diagram-description">A data-flow diagram.</desc>
         <!-- Definitions -->
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -5029,224 +5029,264 @@
         <!-- Background Grid -->
         <rect width="100%" height="100%" fill="url(#grid)" />
 
-        <!-- Time Segments -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="0" x="48" y="150" width="964" height="255" rx="10" class="c-lane" stroke-width="1"/>
+        <!-- Data Stages -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="0" x="16" y="46" width="168" height="484" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="100" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">01 / Free balance</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="1" x="48" y="425" width="964" height="255" rx="10" class="c-lane" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="1" x="231" y="46" width="168" height="484" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="315" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">02 / Hold (HoldReason)</text>
 
-        <!-- Lifelines -->
-        <path d="M 128 142 L 128 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
-        <path d="M 293.2 142 L 293.2 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
-        <path d="M 458.4 142 L 458.4 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
-        <path d="M 623.5999999999999 142 L 623.5999999999999 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
-        <path d="M 788.8 142 L 788.8 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
-        <path d="M 954 142 L 954 715" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="2" x="446" y="46" width="168" height="484" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="530" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">03 / Trigger</text>
 
-        <!-- Activations -->
-        <rect x="288.2" y="180" width="10" height="50" rx="3" class="c-mask"/>
-        <rect x="288.2" y="180" width="10" height="50" rx="3" class="c-backend" stroke-width="1"/>
-        <rect x="618.5999999999999" y="265" width="10" height="132" rx="3" class="c-mask"/>
-        <rect x="618.5999999999999" y="265" width="10" height="132" rx="3" class="c-backend" stroke-width="1"/>
-        <rect x="453.4" y="450" width="10" height="50" rx="3" class="c-mask"/>
-        <rect x="453.4" y="450" width="10" height="50" rx="3" class="c-backend" stroke-width="1"/>
-        <rect x="618.5999999999999" y="535" width="10" height="132" rx="3" class="c-mask"/>
-        <rect x="618.5999999999999" y="535" width="10" height="132" rx="3" class="c-backend" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="3" x="661" y="46" width="168" height="484" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="745" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">04 / Payout</text>
 
-        <!-- Messages -->
-        <g data-edge-from="owner" data-edge-to="primary" data-edge-label="ask for terms: bytes, duration" data-edge-key="0" data-edge-id="quote-request">
-          <path data-composition-edge-from="owner" data-composition-edge-to="primary" data-composition-edge-id="quote-request" data-composition-points="135,185;286.2,185" d="M 135 185 L 286.2 185" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="126.6" y="165" width="168" height="16" rx="3" class="c-mask"/>
-          <text x="210.6" y="175" class="t-backend" font-size="9" text-anchor="middle">ask for terms: bytes, duration</text>
-        </g>
-        </g>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="4" x="876" y="46" width="168" height="484" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / Burn / slash</text>
 
-        <g data-edge-from="primary" data-edge-to="owner" data-edge-label="AgreementTerms + signature, valid_until" data-edge-key="1" data-edge-id="signed-terms">
-          <path data-composition-edge-from="primary" data-composition-edge-to="owner" data-composition-edge-id="signed-terms" data-composition-points="286.2,225;135,225" d="M 286.2 225 L 135 225" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="103.19999999999999" y="205" width="214.8" height="16" rx="3" class="c-mask"/>
-          <text x="210.6" y="215" class="t-muted" font-size="9" text-anchor="middle">AgreementTerms + signature, valid_until</text>
-        </g>
-        </g>
+        <!-- Flow paths -->
+        <path data-edge-from="provider_acct" data-edge-to="stake" data-edge-label="register_provider, add_stake" data-edge-key="0" data-edge-id="stake-in" data-composition-points="156,157;259,157" d="M 156 157 L 259 157" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="challenger_acct" data-edge-to="deposit" data-edge-label="challenge_*" data-edge-key="1" data-edge-id="deposit-in" data-composition-points="156,271;259,271" d="M 156 271 L 259 271" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="owner_acct" data-edge-to="payment" data-edge-label="redeem terms" data-edge-key="2" data-edge-id="escrow-in" data-composition-points="156,385;259,385" d="M 156 385 L 259 385" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="owner_acct" data-edge-to="sync_hold" data-edge-label="sync_balance" data-edge-key="3" data-edge-id="sync-in" data-composition-points="100,414;100,499;259,499" d="M 100 414 L 100 499 L 259 499" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="stake" data-edge-to="challenger_out" data-edge-label="tx fees from slash" data-edge-key="4" data-edge-id="made-whole" data-composition-points="371,157;689,157" d="M 371 157 L 689 157" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="stake" data-edge-to="treasury" data-edge-label="slash: full stake" data-edge-key="5" data-edge-id="slash" data-composition-points="315,128;315,105;960,105;960,356" d="M 315 128 L 315 105 L 960 105 L 960 356" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="deposit" data-edge-to="challenger_out" data-edge-label="excess deposit" data-edge-key="6" data-edge-id="excess" data-composition-points="315,242;315,214;745,214;745,186" d="M 315 242 L 315 214 L 745 214 L 745 186" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="deposit" data-edge-to="provider_out" data-edge-label="response fee reimbursed" data-edge-key="7" data-edge-id="fee" data-composition-points="371,271;689,271" d="M 371 271 L 689 271" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="payment" data-edge-to="provider_out" data-edge-label="Pay / Burn remainder / claim" data-edge-key="8" data-edge-id="pay" data-composition-points="315,356;315,328;745,328;745,300" d="M 315 356 L 315 328 L 745 328 L 745 300" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="payment" data-edge-to="treasury" data-edge-label="Burn { burn_percent }" data-edge-key="9" data-edge-id="burn" data-composition-points="315,414;315,442;850,442;850,385;904,385" d="M 315 414 L 315 442 L 850 442 L 850 385 L 904 385" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="payment" data-edge-to="owner_out" data-edge-label="remove_slashed" data-edge-key="10" data-edge-id="refund" data-composition-points="371,385;689,385" d="M 371 385 L 689 385" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="sync_hold" data-edge-to="replica_out" data-edge-label="sync_price" data-edge-key="11" data-edge-id="sync-pay" data-composition-points="371,499;689,499" d="M 371 499 L 689 499" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
 
-        <g data-edge-from="owner" data-edge-to="pallet" data-edge-label="establish_storage_agreement(terms, sig, visibility)" data-edge-key="2" data-edge-id="redeem-primary">
-          <path data-composition-edge-from="owner" data-composition-edge-to="pallet" data-composition-edge-id="redeem-primary" data-composition-points="135,270;616.5999999999999,270" d="M 135 270 L 616.5999999999999 270" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <g data-detail="context">
-          <rect x="237.19999999999996" y="250" width="277.2" height="16" rx="3" class="c-mask"/>
-          <text x="375.79999999999995" y="260" class="t-backend" font-size="9" text-anchor="middle">establish_storage_agreement(terms, sig, visibility)</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="bucket" data-edge-label="create bucket, owner as admin, provider as primary" data-edge-key="3" data-edge-id="create-bucket">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="bucket" data-composition-edge-id="create-bucket" data-composition-points="630.5999999999999,312;781.8,312" d="M 630.5999999999999 312 L 781.8 312" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="570.1999999999999" y="292" width="272" height="16" rx="3" class="c-mask"/>
-          <text x="706.1999999999999" y="302" class="t-backend" font-size="9" text-anchor="middle">create bucket, owner as admin, provider as primary</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="holds" data-edge-label="hold AgreementPayment on owner" data-edge-key="4" data-edge-id="hold-payment">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="holds" data-composition-edge-id="hold-payment" data-composition-points="630.5999999999999,352;947,352" d="M 630.5999999999999 352 L 947 352" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <g data-detail="context">
-          <rect x="704.8" y="332" width="168" height="16" rx="3" class="c-mask"/>
-          <text x="788.8" y="342" class="t-security" font-size="9" text-anchor="middle">hold AgreementPayment on owner</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="owner" data-edge-label="AgreementEstablished" data-edge-key="5" data-edge-id="primary-ack">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="owner" data-composition-edge-id="primary-ack" data-composition-points="616.5999999999999,392;135,392" d="M 616.5999999999999 392 L 135 392" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="317.79999999999995" y="372" width="116" height="16" rx="3" class="c-mask"/>
-          <text x="375.79999999999995" y="382" class="t-muted" font-size="9" text-anchor="middle">AgreementEstablished</text>
-        </g>
-        </g>
-
-        <g data-edge-from="owner" data-edge-to="replica" data-edge-label="ask for replica terms: sync price, interval" data-edge-key="6" data-edge-id="replica-quote">
-          <path data-composition-edge-from="owner" data-composition-edge-to="replica" data-composition-edge-id="replica-quote" data-composition-points="135,455;451.4,455" d="M 135 455 L 451.4 455" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="175.39999999999998" y="435" width="235.6" height="16" rx="3" class="c-mask"/>
-          <text x="293.2" y="445" class="t-backend" font-size="9" text-anchor="middle">ask for replica terms: sync price, interval</text>
-        </g>
-        </g>
-
-        <g data-edge-from="replica" data-edge-to="owner" data-edge-label="AgreementTerms bound to bucket_id" data-edge-key="7" data-edge-id="replica-signed">
-          <path data-composition-edge-from="replica" data-composition-edge-to="owner" data-composition-edge-id="replica-signed" data-composition-points="451.4,495;135,495" d="M 451.4 495 L 135 495" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="201.39999999999998" y="475" width="183.6" height="16" rx="3" class="c-mask"/>
-          <text x="293.2" y="485" class="t-muted" font-size="9" text-anchor="middle">AgreementTerms bound to bucket_id</text>
-        </g>
-        </g>
-
-        <g data-edge-from="owner" data-edge-to="pallet" data-edge-label="establish_replica_agreement(bucket_id, terms, sig)" data-edge-key="8" data-edge-id="redeem-replica">
-          <path data-composition-edge-from="owner" data-composition-edge-to="pallet" data-composition-edge-id="redeem-replica" data-composition-points="135,540;616.5999999999999,540" d="M 135 540 L 616.5999999999999 540" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <g data-detail="context">
-          <rect x="239.79999999999995" y="520" width="272" height="16" rx="3" class="c-mask"/>
-          <text x="375.79999999999995" y="530" class="t-backend" font-size="9" text-anchor="middle">establish_replica_agreement(bucket_id, terms, sig)</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="holds" data-edge-label="hold payment + sync_balance" data-edge-key="9" data-edge-id="hold-sync">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="holds" data-composition-edge-id="hold-sync" data-composition-points="630.5999999999999,582;947,582" d="M 630.5999999999999 582 L 947 582" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <g data-detail="context">
-          <rect x="712.5999999999999" y="562" width="152.4" height="16" rx="3" class="c-mask"/>
-          <text x="788.8" y="572" class="t-security" font-size="9" text-anchor="middle">hold payment + sync_balance</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="bucket" data-edge-label="agreement stored, role = Replica" data-edge-key="10" data-edge-id="record-replica">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="bucket" data-composition-edge-id="record-replica" data-composition-points="630.5999999999999,622;781.8,622" d="M 630.5999999999999 622 L 781.8 622" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="616.9999999999999" y="602" width="178.4" height="16" rx="3" class="c-mask"/>
-          <text x="706.1999999999999" y="612" class="t-backend" font-size="9" text-anchor="middle">agreement stored, role = Replica</text>
-        </g>
-        </g>
-
-        <g data-edge-from="pallet" data-edge-to="replica" data-edge-label="AgreementEstablished" data-edge-key="11" data-edge-id="replica-ack">
-          <path data-composition-edge-from="pallet" data-composition-edge-to="replica" data-composition-edge-id="replica-ack" data-composition-points="616.5999999999999,662;465.4,662" d="M 616.5999999999999 662 L 465.4 662" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-        <g data-detail="context">
-          <rect x="483" y="642" width="116" height="16" rx="3" class="c-mask"/>
-          <text x="541" y="652" class="t-muted" font-size="9" text-anchor="middle">AgreementEstablished</text>
-        </g>
-        </g>
-
-        <!-- Segment Labels -->
-        <g data-graph-role="segment-label" data-segment-id="0">
-          <rect x="56" y="128" width="258.4" height="18" rx="3" class="c-mask"/>
-          <text x="62" y="141" class="t-dim" font-size="9" font-weight="600">Primary agreement: bucket created on redemption</text>
-        </g>
-        <g data-graph-role="segment-label" data-segment-id="1">
-          <rect x="56" y="403" width="305.2" height="18" rx="3" class="c-mask"/>
-          <text x="62" y="416" class="t-dim" font-size="9" font-weight="600">Replica agreement: permissionless, on an existing bucket</text>
-        </g>
-
-        <!-- Participants -->
-        <g id="node-owner" data-node-id="owner" data-node-label="Owner" tabindex="0" role="button" aria-label="Focus Owner, client / funder, Sequence participant" aria-pressed="false" data-node-kind="external" data-node-sublabel="client / funder" data-node-context="Sequence participant">
-          <title>Owner · client / funder · Sequence participant</title>
-          <rect x="62" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="62" y="72" width="132" height="54" rx="6" class="c-external" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(68 78) scale(0.6875)">
+        <!-- Nodes -->
+        <g id="node-provider_acct" data-node-id="provider_acct" data-node-label="Provider" tabindex="0" role="button" aria-label="Focus Provider, free balance, 01 / Free balance" aria-pressed="false" data-node-kind="external" data-node-sublabel="free balance" data-node-context="01 / Free balance">
+          <title>Provider · free balance · 01 / Free balance</title>
+          <rect x="44" y="128" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="44" y="128" width="112" height="58" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(50 134) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="128" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Owner</text>
-          <text data-detail="context" x="128" y="111" class="t-muted" font-size="7" text-anchor="middle">client / funder</text>
+          <text data-node-label="" data-detail-anchor="" x="100" y="149" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Provider</text>
+          <text data-detail="context" x="100" y="165" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
         </g>
 
-        <g id="node-primary" data-node-id="primary" data-node-label="Primary Provider" tabindex="0" role="button" aria-label="Focus Primary Provider, node HTTP, Sequence participant" aria-pressed="false" data-node-kind="backend" data-node-sublabel="node HTTP" data-node-context="Sequence participant">
-          <title>Primary Provider · node HTTP · Sequence participant</title>
-          <rect x="227.2" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="227.2" y="72" width="132" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(233.2 78) scale(0.6875)">
-            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+        <g id="node-challenger_acct" data-node-id="challenger_acct" data-node-label="Challenger" tabindex="0" role="button" aria-label="Focus Challenger, free balance, 01 / Free balance" aria-pressed="false" data-node-kind="external" data-node-sublabel="free balance" data-node-context="01 / Free balance">
+          <title>Challenger · free balance · 01 / Free balance</title>
+          <rect x="44" y="242" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="44" y="242" width="112" height="58" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(50 248) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="293.2" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Primary Provider</text>
-          <text data-detail="context" x="293.2" y="111" class="t-muted" font-size="7" text-anchor="middle">node HTTP</text>
+          <text data-node-label="" data-detail-anchor="" x="100" y="263" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Challenger</text>
+          <text data-detail="context" x="100" y="279" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
         </g>
 
-        <g id="node-replica" data-node-id="replica" data-node-label="Replica Provider" tabindex="0" role="button" aria-label="Focus Replica Provider, node HTTP, Sequence participant" aria-pressed="false" data-node-kind="backend" data-node-sublabel="node HTTP" data-node-context="Sequence participant">
-          <title>Replica Provider · node HTTP · Sequence participant</title>
-          <rect x="392.4" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="392.4" y="72" width="132" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(398.4 78) scale(0.6875)">
-            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+        <g id="node-owner_acct" data-node-id="owner_acct" data-node-label="Agreement owner" tabindex="0" role="button" aria-label="Focus Agreement owner, free balance, 01 / Free balance" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="free balance" data-node-context="01 / Free balance">
+          <title>Agreement owner · free balance · 01 / Free balance</title>
+          <rect x="44" y="356" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="44" y="356" width="112" height="58" rx="6" class="c-frontend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(50 362) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="458.4" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Replica Provider</text>
-          <text data-detail="context" x="458.4" y="111" class="t-muted" font-size="7" text-anchor="middle">node HTTP</text>
+          <text data-node-label="" data-detail-anchor="" x="100" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Agreement owner</text>
+          <text data-detail="context" x="100" y="393" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
         </g>
 
-        <g id="node-pallet" data-node-id="pallet" data-node-label="Storage Pallet" tabindex="0" role="button" aria-label="Focus Storage Pallet, extrinsic, Sequence participant" aria-pressed="false" data-node-kind="backend" data-node-sublabel="extrinsic" data-node-context="Sequence participant">
-          <title>Storage Pallet · extrinsic · Sequence participant</title>
-          <rect x="557.5999999999999" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="557.5999999999999" y="72" width="132" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(563.5999999999999 78) scale(0.6875)">
-            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="623.5999999999999" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Storage Pallet</text>
-          <text data-detail="context" x="623.5999999999999" y="111" class="t-muted" font-size="7" text-anchor="middle">extrinsic</text>
-        </g>
-
-        <g id="node-bucket" data-node-id="bucket" data-node-label="Bucket State" tabindex="0" role="button" aria-label="Focus Bucket State, on-chain, Sequence participant" aria-pressed="false" data-node-kind="database" data-node-sublabel="on-chain" data-node-context="Sequence participant">
-          <title>Bucket State · on-chain · Sequence participant</title>
-          <rect x="722.8" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="722.8" y="72" width="132" height="54" rx="6" class="c-database" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(728.8 78) scale(0.6875)">
-            <ellipse cx="8" cy="4" rx="5" ry="2"/>
-            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="788.8" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Bucket State</text>
-          <text data-detail="context" x="788.8" y="111" class="t-muted" font-size="7" text-anchor="middle">on-chain</text>
-        </g>
-
-        <g id="node-holds" data-node-id="holds" data-node-label="Holds" tabindex="0" role="button" aria-label="Focus Holds, escrow, Sequence participant" aria-pressed="false" data-node-kind="security" data-node-sublabel="escrow" data-node-context="Sequence participant">
-          <title>Holds · escrow · Sequence participant</title>
-          <rect x="888" y="72" width="132" height="54" rx="6" class="c-mask"/>
-          <rect x="888" y="72" width="132" height="54" rx="6" class="c-security" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(894 78) scale(0.6875)">
+        <g id="node-stake" data-node-id="stake" data-node-label="ProviderStake" tabindex="0" role="button" aria-label="Focus ProviderStake, held on provider, 02 / Hold (HoldReason)" aria-pressed="false" data-node-kind="security" data-node-sublabel="held on provider" data-node-context="02 / Hold (HoldReason)">
+          <title>ProviderStake · held on provider · 02 / Hold (HoldReason)</title>
+          <rect x="259" y="128" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="259" y="128" width="112" height="58" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(265 134) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="954" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Holds</text>
-          <text data-detail="context" x="954" y="111" class="t-muted" font-size="7" text-anchor="middle">escrow</text>
+          <text data-node-label="" data-detail-anchor="" x="315" y="149" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">ProviderStake</text>
+          <text data-detail="context" x="315" y="165" class="t-muted" font-size="7" text-anchor="middle">held on provider</text>
+        </g>
+
+        <g id="node-deposit" data-node-id="deposit" data-node-label="ChallengeDeposit" tabindex="0" role="button" aria-label="Focus ChallengeDeposit, held on challenger, 02 / Hold (HoldReason)" aria-pressed="false" data-node-kind="database" data-node-sublabel="held on challenger" data-node-context="02 / Hold (HoldReason)">
+          <title>ChallengeDeposit · held on challenger · 02 / Hold (HoldReason)</title>
+          <rect x="259" y="242" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="259" y="242" width="112" height="58" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(265 248) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="315" y="263" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">ChallengeDeposit</text>
+          <text data-detail="context" x="315" y="279" class="t-muted" font-size="7" text-anchor="middle">held on challenger</text>
+        </g>
+
+        <g id="node-payment" data-node-id="payment" data-node-label="AgreementPayment" tabindex="0" role="button" aria-label="Focus AgreementPayment, payment_locked, 02 / Hold (HoldReason)" aria-pressed="false" data-node-kind="database" data-node-sublabel="payment_locked" data-node-context="02 / Hold (HoldReason)">
+          <title>AgreementPayment · payment_locked · 02 / Hold (HoldReason)</title>
+          <rect x="259" y="356" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="259" y="356" width="112" height="58" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(265 362) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="315" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">AgreementPayment</text>
+          <text data-detail="context" x="315" y="393" class="t-muted" font-size="7" text-anchor="middle">payment_locked</text>
+        </g>
+
+        <g id="node-sync_hold" data-node-id="sync_hold" data-node-label="AgreementPayment" tabindex="0" role="button" aria-label="Focus AgreementPayment, sync_balance, 02 / Hold (HoldReason)" aria-pressed="false" data-node-kind="database" data-node-sublabel="sync_balance" data-node-context="02 / Hold (HoldReason)">
+          <title>AgreementPayment · sync_balance · 02 / Hold (HoldReason)</title>
+          <rect x="259" y="470" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="259" y="470" width="112" height="58" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(265 476) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="315" y="491" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">AgreementPayment</text>
+          <text data-detail="context" x="315" y="507" class="t-muted" font-size="7" text-anchor="middle">sync_balance</text>
+        </g>
+
+        <g id="node-challenger_out" data-node-id="challenger_out" data-node-label="Challenger" tabindex="0" role="button" aria-label="Focus Challenger, free balance, 04 / Payout" aria-pressed="false" data-node-kind="external" data-node-sublabel="free balance" data-node-context="04 / Payout">
+          <title>Challenger · free balance · 04 / Payout</title>
+          <rect x="689" y="128" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="689" y="128" width="112" height="58" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(695 134) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="745" y="149" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Challenger</text>
+          <text data-detail="context" x="745" y="165" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
+        </g>
+
+        <g id="node-provider_out" data-node-id="provider_out" data-node-label="Provider" tabindex="0" role="button" aria-label="Focus Provider, free balance, 04 / Payout" aria-pressed="false" data-node-kind="external" data-node-sublabel="free balance" data-node-context="04 / Payout">
+          <title>Provider · free balance · 04 / Payout</title>
+          <rect x="689" y="242" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="689" y="242" width="112" height="58" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(695 248) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="745" y="263" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Provider</text>
+          <text data-detail="context" x="745" y="279" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
+        </g>
+
+        <g id="node-owner_out" data-node-id="owner_out" data-node-label="Agreement owner" tabindex="0" role="button" aria-label="Focus Agreement owner, free balance, 04 / Payout" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="free balance" data-node-context="04 / Payout">
+          <title>Agreement owner · free balance · 04 / Payout</title>
+          <rect x="689" y="356" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="689" y="356" width="112" height="58" rx="6" class="c-frontend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(695 362) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="745" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Agreement owner</text>
+          <text data-detail="context" x="745" y="393" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
+        </g>
+
+        <g id="node-replica_out" data-node-id="replica_out" data-node-label="Replica provider" tabindex="0" role="button" aria-label="Focus Replica provider, free balance, 04 / Payout" aria-pressed="false" data-node-kind="external" data-node-sublabel="free balance" data-node-context="04 / Payout">
+          <title>Replica provider · free balance · 04 / Payout</title>
+          <rect x="689" y="470" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="689" y="470" width="112" height="58" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(695 476) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="745" y="491" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Replica provider</text>
+          <text data-detail="context" x="745" y="507" class="t-muted" font-size="7" text-anchor="middle">free balance</text>
+        </g>
+
+        <g id="node-treasury" data-node-id="treasury" data-node-label="Treasury" tabindex="0" role="button" aria-label="Focus Treasury, burn and slash, 05 / Burn / slash" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="burn and slash" data-node-context="05 / Burn / slash">
+          <title>Treasury · burn and slash · 05 / Burn / slash</title>
+          <rect x="904" y="356" width="112" height="58" rx="6" class="c-mask"/>
+          <rect x="904" y="356" width="112" height="58" rx="6" class="c-cloud" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(910 362) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="960" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Treasury</text>
+          <text data-detail="context" x="960" y="393" class="t-muted" font-size="7" text-anchor="middle">burn and slash</text>
+        </g>
+
+        <!-- Flow labels -->
+        <g data-detail="context" data-edge-from="provider_acct" data-edge-to="stake" data-edge-label="register_provider, add_stake" data-edge-key="0" data-edge-id="stake-in">
+          <rect x="133.4" y="94" width="149.2" height="27" rx="4" class="c-mask"/>
+          <text x="208" y="105" class="t-backend" font-size="8" text-anchor="middle">register_provider, add_stake</text>
+        <text data-detail="fine" x="208" y="116" class="t-dim" font-size="7" text-anchor="middle">stake + ED free</text>
+        </g>
+        <g data-detail="context" data-edge-from="challenger_acct" data-edge-to="deposit" data-edge-label="challenge_*" data-edge-key="1" data-edge-id="deposit-in">
+          <rect x="133.4" y="203" width="149.2" height="27" rx="4" class="c-mask"/>
+          <text x="208" y="214" class="t-backend" font-size="8" text-anchor="middle">challenge_*</text>
+        <text data-detail="fine" x="208" y="225" class="t-dim" font-size="7" text-anchor="middle">over-estimated response cost</text>
+        </g>
+        <g data-detail="context" data-edge-from="owner_acct" data-edge-to="payment" data-edge-label="redeem terms" data-edge-key="2" data-edge-id="escrow-in">
+          <rect x="111.35" y="317" width="193.3" height="27" rx="4" class="c-mask"/>
+          <text x="208" y="328" class="t-backend" font-size="8" text-anchor="middle">redeem terms</text>
+        <text data-detail="fine" x="208" y="339" class="t-dim" font-size="7" text-anchor="middle">price_per_byte × max_bytes × duration</text>
+        </g>
+        <g data-detail="context" data-edge-from="owner_acct" data-edge-to="sync_hold" data-edge-label="sync_balance" data-edge-key="3" data-edge-id="sync-in">
+          <rect x="125" y="488" width="110" height="27" rx="4" class="c-mask"/>
+          <text x="180" y="499" class="t-backend" font-size="8" text-anchor="middle">sync_balance</text>
+        <text data-detail="fine" x="180" y="510" class="t-dim" font-size="7" text-anchor="middle">add_replica_provider</text>
+        </g>
+        <g data-detail="context" data-edge-from="stake" data-edge-to="challenger_out" data-edge-label="tx fees from slash" data-edge-key="4" data-edge-id="made-whole">
+          <rect x="479.9" y="136" width="100.2" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="147" class="t-security" font-size="8" text-anchor="middle">tx fees from slash</text>
+        <text data-detail="fine" x="530" y="158" class="t-dim" font-size="7" text-anchor="middle">no reward</text>
+        </g>
+        <g data-detail="context" data-edge-from="stake" data-edge-to="treasury" data-edge-label="slash: full stake" data-edge-key="5" data-edge-id="slash">
+          <rect x="592.35" y="94" width="95.3" height="27" rx="4" class="c-mask"/>
+          <text x="640" y="105" class="t-security" font-size="8" text-anchor="middle">slash: full stake</text>
+        <text data-detail="fine" x="640" y="116" class="t-dim" font-size="7" text-anchor="middle">failed challenge</text>
+        </g>
+        <g data-detail="context" data-edge-from="deposit" data-edge-to="challenger_out" data-edge-label="excess deposit" data-edge-key="6" data-edge-id="excess">
+          <rect x="475" y="203" width="110" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="214" class="t-muted" font-size="8" text-anchor="middle">excess deposit</text>
+        <text data-detail="fine" x="530" y="225" class="t-dim" font-size="7" text-anchor="middle">refund on resolution</text>
+        </g>
+        <g data-detail="context" data-edge-from="deposit" data-edge-to="provider_out" data-edge-label="response fee reimbursed" data-edge-key="7" data-edge-id="fee">
+          <rect x="450.5" y="250" width="159" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="261" class="t-muted" font-size="8" text-anchor="middle">response fee reimbursed</text>
+        <text data-detail="fine" x="530" y="272" class="t-dim" font-size="7" text-anchor="middle">public 100% / authorized split</text>
+        </g>
+        <g data-detail="context" data-edge-from="payment" data-edge-to="provider_out" data-edge-label="Pay / Burn remainder / claim" data-edge-key="8" data-edge-id="pay">
+          <rect x="445.6" y="317" width="168.8" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="328" class="t-backend" font-size="8" text-anchor="middle">Pay / Burn remainder / claim</text>
+        <text data-detail="fine" x="530" y="339" class="t-dim" font-size="7" text-anchor="middle">extend_agreement: elapsed period</text>
+        </g>
+        <g data-detail="context" data-edge-from="payment" data-edge-to="treasury" data-edge-label="Burn { burn_percent }" data-edge-key="9" data-edge-id="burn">
+          <rect x="542.55" y="431" width="114.9" height="27" rx="4" class="c-mask"/>
+          <text x="600" y="442" class="t-muted" font-size="8" text-anchor="middle">Burn { burn_percent }</text>
+        <text data-detail="fine" x="600" y="453" class="t-dim" font-size="7" text-anchor="middle">end_agreement</text>
+        </g>
+        <g data-detail="context" data-edge-from="payment" data-edge-to="owner_out" data-edge-label="remove_slashed" data-edge-key="10" data-edge-id="refund">
+          <rect x="482.35" y="364" width="95.3" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="375" class="t-muted" font-size="8" text-anchor="middle">remove_slashed</text>
+        <text data-detail="fine" x="530" y="386" class="t-dim" font-size="7" text-anchor="middle">remaining payment</text>
+        </g>
+        <g data-detail="context" data-edge-from="sync_hold" data-edge-to="replica_out" data-edge-label="sync_price" data-edge-key="11" data-edge-id="sync-pay">
+          <rect x="465.2" y="478" width="129.6" height="27" rx="4" class="c-mask"/>
+          <text x="530" y="489" class="t-backend" font-size="8" text-anchor="middle">sync_price</text>
+        <text data-detail="fine" x="530" y="500" class="t-dim" font-size="7" text-anchor="middle">per confirm_replica_sync</text>
         </g>
 
         <!-- Legend -->
-        <g data-legend="">
-          <text x="40" y="706" class="t-primary" font-size="12" font-weight="650">Legend</text>
-          <g data-legend-semantic-kind="emphasis" data-legend-x="40" data-legend-baseline="726" data-legend-width="78">
-            <path d="M 40 723 L 74 723" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-            <text x="83" y="726" class="t-muted" font-size="10" font-weight="500">request</text>
+        <g data-legend="" data-legend-bridge="">
+          <text x="40" y="548" class="t-primary" font-size="12" font-weight="650">Legend</text>
+          <g data-legend-semantic-kind="emphasis" data-legend-x="40" data-legend-baseline="568" data-legend-width="123">
+            <path d="M 40 565 L 74 565" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+            <text x="83" y="568" class="t-muted" font-size="10" font-weight="500">funding / payout</text>
           </g>
-          <g data-legend-semantic-kind="return" data-legend-x="140" data-legend-baseline="726" data-legend-width="73">
-            <path d="M 140 723 L 174 723" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-            <text x="183" y="726" class="t-muted" font-size="10" font-weight="500">return</text>
+          <g data-legend-semantic-kind="security" data-legend-x="185" data-legend-baseline="568" data-legend-width="68">
+            <path d="M 185 565 L 219 565" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+            <text x="228" y="568" class="t-muted" font-size="10" font-weight="500">slash</text>
           </g>
-          <g data-legend-semantic-kind="security" data-legend-x="235" data-legend-baseline="726" data-legend-width="83">
-            <path d="M 235 723 L 269 723" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-            <text x="278" y="726" class="t-muted" font-size="10" font-weight="500">security</text>
+          <g data-legend-semantic-kind="database" data-legend-kind="database" data-legend-label="hold" data-legend-x="275" data-legend-baseline="568" data-legend-width="63">
+            <rect x="275" y="560" width="14" height="9" rx="2" class="c-database" stroke-width="1"/>
+            <text x="297" y="568" class="t-muted" font-size="10" font-weight="500">hold</text>
           </g>
-          <g data-legend-semantic-kind="default" data-legend-x="340" data-legend-baseline="726" data-legend-width="118">
-            <path d="M 340 723 L 374 723" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-            <text x="383" y="726" class="t-muted" font-size="10" font-weight="500">default message</text>
+          <g data-legend-semantic-kind="default" data-legend-x="360" data-legend-baseline="568" data-legend-width="177">
+            <path d="M 360 565 L 394 565" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+            <text x="403" y="568" class="t-muted" font-size="10" font-weight="500">refund, reimbursement, burn</text>
           </g>
         </g>
       </svg>
@@ -5438,36 +5478,37 @@
       <div class="card">
         <div class="card-header">
           <div class="card-dot cyan"></div>
-          <h3>One call, no round trip</h3>
+          <h3>Three hold reasons</h3>
         </div>
         <ul>
-          <li>&bull; The provider authors and signs the terms off-chain</li>
-          <li>&bull; The owner submits the signed quote on-chain in a single extrinsic</li>
-          <li>&bull; There is no on-chain request and accept handshake</li>
+          <li>&bull; ProviderStake: provider collateral</li>
+          <li>&bull; AgreementPayment: fee and sync_balance, on the owner; moves on transfer_agreement_ownership</li>
+          <li>&bull; ChallengeDeposit: challenger deposit</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-dot emerald"></div>
-          <h3>What the quote fixes</h3>
+          <div class="card-dot rose"></div>
+          <h3>Stake and challenges</h3>
         </div>
         <ul>
-          <li>&bull; Price per byte, quota, duration and a valid_until expiry</li>
-          <li>&bull; A primary quote carries bucket_id = None; the bucket is created at redemption</li>
-          <li>&bull; A replica quote carries bucket_id = Some and replica_params</li>
+          <li>&bull; Failed challenge: full stake slashed to the Treasury</li>
+          <li>&bull; Challenger made whole from the slash, no reward</li>
+          <li>&bull; Valid response: stake untouched</li>
+          <li>&bull; complete_deregister releases the stake</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
           <div class="card-dot amber"></div>
-          <h3>Binding both ways</h3>
+          <h3>Who pays the response cost</h3>
         </div>
         <ul>
-          <li>&bull; No early exit for the provider and no early cancellation for the owner</li>
-          <li>&bull; Escrow sits on the agreement owner; anyone may top it up</li>
-          <li>&bull; Extensions can be refused later with set_extensions_blocked</li>
+          <li>&bull; Provider pays the fee from its own account</li>
+          <li>&bull; Public challenger: deposit reimburses 100%</li>
+          <li>&bull; Authorized: split by response time, challenger pays at least 50%</li>
         </ul>
       </div>
     </div>

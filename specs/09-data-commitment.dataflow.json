@@ -6,7 +6,7 @@
     "quality_profile": "showcase",
     "viewBox": [
       1068,
-      680
+      600
     ],
     "views": [
       {
@@ -18,7 +18,7 @@
           "internal",
           "data_root"
         ],
-        "note": "Everything is addressed by hash and uploaded children first."
+        "note": "Chunks and internal nodes are addressed by hash and uploaded children first."
       },
       {
         "id": "commitment",
@@ -28,20 +28,27 @@
           "mmr",
           "snapshot"
         ],
-        "note": "One canonical MMR per bucket, checkpointed as a snapshot."
+        "note": "One canonical MMR per bucket. A checkpoint records it as the BucketSnapshot."
       },
       {
         "id": "consumers",
-        "label": "What the root is used for",
+        "label": "Verified use",
         "focus": [
           "snapshot",
           "historical",
           "proof",
           "replica_confirm"
         ],
-        "note": "The committed root is the trusted anchor for proofs and replica sync."
+        "note": "Challenges and replica sync confirmations verify against the committed roots."
       }
-    ]
+    ],
+    "legend": {
+      "entries": {
+        "security": {
+          "label": "challenge target"
+        }
+      }
+    }
   },
   "stages": [
     {
@@ -74,7 +81,7 @@
       "id": "chunks",
       "type": "database",
       "label": "Chunks",
-      "sublabel": "blake2-256 addressed",
+      "sublabel": "blake2_256(data)",
       "stage": 1,
       "row": 0,
       "tag": "leaves"
@@ -92,9 +99,10 @@
       "id": "data_root",
       "type": "backend",
       "label": "data_root",
-      "sublabel": "root of one upload tree",
+      "sublabel": "Merkle root of chunk tree",
       "stage": 2,
-      "row": 0
+      "row": 0,
+      "tag": "MmrLeaf.data_root"
     },
     {
       "id": "mmr",
@@ -103,16 +111,16 @@
       "sublabel": "one canonical range",
       "stage": 2,
       "row": 2,
-      "tag": "append-only"
+      "tag": "append / delete / freeze"
     },
     {
       "id": "snapshot",
       "type": "database",
-      "label": "Snapshot",
-      "sublabel": "mmr_root + leaf_count",
+      "label": "BucketSnapshot",
+      "sublabel": "Commitment + block",
       "stage": 3,
       "row": 0,
-      "tag": "signer bitfield"
+      "tag": "primary_signers"
     },
     {
       "id": "historical",
@@ -120,20 +128,21 @@
       "label": "historical_roots",
       "sublabel": "3, 7, 11, 23, 47, 113",
       "stage": 3,
-      "row": 2
+      "row": 2,
+      "tag": "prime intervals"
     },
     {
       "id": "proof",
       "type": "security",
       "label": "Challenge Proof",
-      "sublabel": "chunk + two Merkle proofs",
+      "sublabel": "chunk_proof + mmr_proof",
       "stage": 4,
       "row": 0
     },
     {
       "id": "replica_confirm",
       "type": "backend",
-      "label": "Sync Confirmation",
+      "label": "Replica Sync",
       "sublabel": "signed roots array",
       "stage": 4,
       "row": 2
@@ -167,8 +176,8 @@
       "id": "append-leaf",
       "from": "data_root",
       "to": "mmr",
-      "label": "commit appends an MMR leaf",
-      "classification": "provider-signed",
+      "label": "POST /commit appends MmrLeaf",
+      "classification": "CommitmentPayload signed",
       "variant": "emphasis",
       "labelDy": 24
     },
@@ -177,14 +186,14 @@
       "from": "mmr",
       "to": "snapshot",
       "label": "checkpoint(commitment, signatures)",
-      "classification": "canonical",
+      "classification": "min_providers signatures",
       "variant": "emphasis"
     },
     {
       "id": "history",
       "from": "snapshot",
       "to": "historical",
-      "label": "roots kept at prime block offsets",
+      "label": "checkpoint updates at prime intervals",
       "classification": "anti-race",
       "labelDy": 140
     },
@@ -192,8 +201,8 @@
       "id": "challenge-target",
       "from": "snapshot",
       "to": "proof",
-      "label": "leaf_index, chunk_index",
-      "classification": "public commitment",
+      "label": "ChunkLocation",
+      "classification": "leaf_index, chunk_index",
       "variant": "security",
       "labelDy": 53
     },
@@ -202,7 +211,7 @@
       "from": "historical",
       "to": "replica_confirm",
       "label": "confirm_replica_sync(roots)",
-      "classification": "paid per sync",
+      "classification": "matched root is new",
       "labelDy": 53
     }
   ],
@@ -220,18 +229,18 @@
       "dot": "emerald",
       "title": "One MMR per bucket",
       "items": [
-        "The MMR is per bucket, not per provider; every provider converges to it",
-        "start_seq rises when history is purged; frozen buckets pin it",
-        "The snapshot records which primaries signed the state"
+        "Append adds a leaf; delete raises start_seq; freeze locks start_seq",
+        "Canonical range: [start_seq, start_seq + leaf_count)",
+        "Non-canonical [A, A+N) is prunable once canonical [B, B+M) has B+M > A+N"
       ]
     },
     {
       "dot": "rose",
       "title": "What a proof must show",
       "items": [
-        "chunk_proof: the chunk sits in the leaf's data_root",
-        "mmr_proof: the leaf sits in the committed mmr_root",
-        "Both must verify, or the provider is slashed for InvalidProof"
+        "chunk_proof (MerkleProof): the chunk is in the leaf's data_root",
+        "mmr_proof (MmrProof): peaks, leaf and leaf_proof to the mmr_root",
+        "If either check fails, the provider is slashed with InvalidProof"
       ]
     }
   ]

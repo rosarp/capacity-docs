@@ -2,11 +2,11 @@
   "schema_version": 1,
   "diagram_type": "lifecycle",
   "meta": {
-    "title": "Provider Registration Lifecycle",
+    "title": "Provider Lifecycle",
     "quality_profile": "showcase",
     "viewBox": [
       1000,
-      700
+      580
     ],
     "views": [
       {
@@ -27,9 +27,10 @@
         "focus": [
           "idle",
           "announced",
-          "deregistered"
+          "deregistered",
+          "slashed"
         ],
-        "note": "Announcement freezes new work; completion waits out the window and any open challenge."
+        "note": "complete_deregister runs after DeregisterAnnouncementPeriod with PendingChallenges == 0; cancel_deregister returns to Idle."
       },
       {
         "id": "slash-path",
@@ -39,9 +40,12 @@
           "slashed",
           "removed"
         ],
-        "note": "A failed challenge ends the registration through the slash path, not the exit path."
+        "note": "A failed challenge slashes the entire stake. Exit Announced stays slashable too."
       }
-    ]
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
   },
   "lanes": [
     {
@@ -54,7 +58,7 @@
     },
     {
       "id": "terminal",
-      "label": "Cleanup"
+      "label": "Exit and cleanup"
     }
   ],
   "states": [
@@ -101,15 +105,16 @@
       "type": "success",
       "label": "Deregistered",
       "sublabel": "stake released",
-      "lane": "main",
-      "col": 4,
-      "step": "05"
+      "lane": "terminal",
+      "col": 2,
+      "step": "05",
+      "yOffset": -60
     },
     {
       "id": "announced",
       "type": "waiting",
       "label": "Exit Announced",
-      "sublabel": "accepting flags off",
+      "sublabel": "settings frozen",
       "lane": "gates",
       "col": 1,
       "tag": "still slashable"
@@ -118,18 +123,19 @@
       "id": "slashed",
       "type": "failure",
       "label": "Slashed",
-      "sublabel": "full stake taken",
+      "sublabel": "entire stake slashed",
       "lane": "gates",
       "col": 0,
-      "tag": "failed challenge"
+      "tag": "ChallengeSlashed"
     },
     {
       "id": "removed",
       "type": "neutral",
-      "label": "Removed",
-      "sublabel": "payment back to owner",
+      "label": "Removed from bucket",
+      "sublabel": "payment to owner",
       "lane": "terminal",
-      "col": 0
+      "col": 0,
+      "yOffset": -60
     }
   ],
   "transitions": [
@@ -144,14 +150,14 @@
       "id": "first-agreement",
       "from": "registered",
       "to": "serving",
-      "label": "terms redeemed",
+      "label": "signed terms redeemed",
       "labelDy": -25
     },
     {
       "id": "agreements-expire",
       "from": "serving",
       "to": "idle",
-      "label": "agreements expired",
+      "label": "agreements ended",
       "labelDy": -25
     },
     {
@@ -161,16 +167,29 @@
       "label": "deregister_provider",
       "fromSide": "bottom",
       "toSide": "top",
-      "labelDy": 24
+      "labelAt": [
+        478,
+        240
+      ]
     },
     {
       "id": "complete",
       "from": "announced",
       "to": "deregistered",
       "label": "complete_deregister",
-      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "variant": "emphasis"
+    },
+    {
+      "id": "cancel",
+      "from": "announced",
+      "to": "idle",
+      "label": "cancel_deregister",
       "fromSide": "right",
-      "toSide": "bottom"
+      "toSide": "right",
+      "route": "right-channel",
+      "channelX": 660
     },
     {
       "id": "slash",
@@ -186,7 +205,7 @@
       "id": "cleanup",
       "from": "slashed",
       "to": "removed",
-      "label": "remove_slashed",
+      "label": "remove_slashed (anyone)",
       "fromSide": "bottom",
       "toSide": "top",
       "labelDy": 24
@@ -195,30 +214,29 @@
   "cards": [
     {
       "dot": "emerald",
-      "title": "Entry",
+      "title": "Entry and settings",
       "items": [
-        "Stake must be at least MinProviderStake and leaves the existential deposit spendable",
-        "Stake only grows through add_stake; withdrawal goes through deregistration",
-        "Capacity is bounded by stake: max_capacity * MinStakePerByte"
+        "stake >= MinProviderStake",
+        "add_stake only increases stake",
+        "if max_capacity > 0: stake >= max_capacity * MinStakePerByte"
       ]
     },
     {
       "dot": "amber",
       "title": "Two-step exit",
       "items": [
-        "Announcement requires committed_bytes == 0 and freezes the accepting flags",
-        "complete_deregister waits out DeregisterAnnouncementPeriod, which exceeds ChallengeTimeout",
-        "It also requires PendingChallenges == 0, so stake stays slashable to the end",
-        "cancel_deregister clears the announcement and restores the accepting flags"
+        "Announce needs committed_bytes == 0",
+        "DeregisterAnnouncementPeriod > ChallengeTimeout",
+        "Completion needs PendingChallenges == 0"
       ]
     },
     {
       "dot": "rose",
       "title": "Slash path",
       "items": [
-        "One failed challenge slashes the entire stake, not just this bucket's share",
-        "remove_slashed is permissionless and returns remaining payment to the agreement owner",
-        "Recorded challenge counters are per provider and tier-independent"
+        "A failed challenge slashes the entire stake",
+        "Exit Announced is still slashable",
+        "remove_slashed returns payment to owner"
       ]
     }
   ]
